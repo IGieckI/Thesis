@@ -20,5 +20,17 @@ Results su i vari set:\
 - Consulta Online: anche qui sono presenti diverse decisioni relative alle antinomie
 - HUDOC: Solo 3 documenti disponibili relativi alle antinomie :,(
 
+Download di ogni codice:
+[X] Costituzione
+[ ] Codice civile
+[ ] Codice penale
+[X] Codice di procedura civile
+[ ] Codice di procedura penale
+[ ] Codice del processo amministrativo
+[ ] Codice della strada
+[ ] Statuto dei lavoratori
+[ ] Codice tributario
+[ ] Codice di commercio
+
 Ideas:
 - si potrebbe chiedere ad un LLM di generare dei quiz basandosi sulle leggi
