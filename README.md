@@ -11,6 +11,10 @@ note: For the section "diritto penale", the download of the 4 file types didn't 
 [Quiz-Concorsi-Online](https://www.quiz-concorsi-online.com/item.php?pgCode=G28I220R466&js_status=js_is_on): There is one quiz of the type we need, but there is no download for that, i wrote an email to them, waiting for an answer.\
 [Mininterno](https://www.mininterno.net/begint.asp?idc=527#google_vignette): Another private dataset that seem to be particularly good, but they dont offer any download, i sent an email, but they will probably ask for money.\
 [Gazzetta Ufficiale HuggingFace](https://huggingface.co/datasets/mii-llm/gazzetta-ufficiale): Dataset quite full with legislative texts, public and private acts.\
+[Agenzia per l'Italia Digitalia](https://dati.gov.it/): Banca dati d'Italia che però sembra non avere dati utili 💀💀💀 ([Data sciencing in Italy](https://forum.italia.it/t/normattiva-open-data/536))\
+Quiz sul diritto penale: dataset girato da Cristiano Casadei via Email\
+Costituzione: dataset girato da Lorenzo Molfetta via Teams\
+\
 
 Results su i vari set:\
 - ECLI: Ricerca meh
@@ -18,8 +22,8 @@ Results su i vari set:\
 - Normattiva: Le ricerche con "antinomia" o "antinomie" risultano solamente in leggi che dicono di voler stare attenti alle antinomie
 - Suprema Corte di Cassazione: disponibili gratuitamente solo gli ultimi 5anni, altrimenti abbonamento -> https://www.italgiure.giustizia.it/sncass/, c'è della roba però è da cpire se è utile
 - Consulta Online: anche qui sono presenti diverse decisioni relative alle antinomie
-- HUDOC: Solo 3 documenti disponibili relativi alle antinomie :,(
-
+- HUDOC: Solo 3 documenti disponibili relativi alle antinomie :\
+\
 Download di ogni codice:
 [X] Costituzione
 [ ] Codice civile
@@ -31,6 +35,6 @@ Download di ogni codice:
 [ ] Statuto dei lavoratori
 [ ] Codice tributario
 [ ] Codice di commercio
-
+\
 Ideas:
 - si potrebbe chiedere ad un LLM di generare dei quiz basandosi sulle leggi
