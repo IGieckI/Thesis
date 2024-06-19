@@ -72,6 +72,9 @@ Per testare il modello migliore fagli rispondere ai quiz
 8. Creare uno script per lo scraping in modo che: un file con leggi venga inizialmente messo in input, questo venga analizzato e vengano presi i riferimenti a leggi anche non presenti in quel testo, nel caso utilizzare uno script per andare sulla pagina web (di normattiva, per esempio), scaricare il file, darlo in pasto all'LLM e ricominciare la procedura.
 9. (opzionale) Brute Force, se non riusciamo a generare la tabella attraverso modelli open source, utilizzare modelli non open source (GPT4, Gemini...)
 
+Extra steps siccome la generazione non funziona bene
+10. Rag 
+
 Prova a passargli sia a mo di domanda+risposta corretta, che chunk di domande
 Prova a definirgli come fare la risposta
 
