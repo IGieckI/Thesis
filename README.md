@@ -62,14 +62,15 @@ Falcon-7B: 74s + 103.44s
 
 NOTA PER LA TESI: NON ABBIAMO UN DATASET, PROBLEMA GENERALE NON SOLO PER NOI (NEL NOSTRO CASO IN PARTICOLARE NON SAPPIAMO PROPRIO SE DUE LEGGI SONO ANTINOMIE)
 Per testare il modello migliore fagli rispondere ai quiz
-1. Prova a dividere i quiz e mandali a Llama3 8B/70B, Mistral 45B, Minerva, Openllama, Gemma quantizzato chiedendogli "se rilevi una legge cercala" creando una tabella con "chunk | quiz_ref | legge | numero | link"
-2. Generare il testo della legge utilizzando quattro modelli differenti e valutali
-3. Generare un unica tabella dalle quattro, magari ad alcui è sfuggito
-4. Provare su tipi di file diversi xml, rdf... per provare ad estrarre le varie leggi
-5. Prova a far generare ai modelli una nuova tabella contenenti una legge simile
-6. Fai un controllo a campione anche usando un modello per capire la qualità 
-7. Sostituzione del riferimento di una legge con il testo di una legge simile a quella referenziata, se la risposta alla stessa domanda è sbagliata (da parte di più modelli) vuol dire che il significato è sbagliato (o in contrasto)
-8. Brute Force (ultimo modo): utilizzo di modelli non open source, 
+1. Provare a dividere i quiz (divisi in set di domande o singolarmente (per evitare l'influenza delle altre domande)) e mandali a Llama3 8B/70B, Mistral 45B, Minerva, Openllama o Gemma, eventualmente quantizzati, chiedendogli "se rilevi una legge, cercala, creando una tabella con righe del tipo [chunk | quiz_ref | legge | numero | link]"
+2. Generare il testo della legge partendo dalle righe generate sopra, utilizzando quattro modelli differenti (i migliori) e valutali.
+3. Generare un unica tabella dalle quattro tabelle generate dai modelli sopra (questo perché un modello potrebbe essersene persa qualcuna)
+4. Provare ad usare i vari modelli per estrarre le varie leggi su tipi di file diversi xml, rdf...
+5. Prova a far generare ai modelli una nuova colonna nella tabella precedente, contenente una legge simile
+6. Fai un controllo a campione anche usando un modello per capire la qualità della tabella
+7. Sostituisci il riferimento di una legge con il testo di una legge simile a quella referenziata, se la risposta alla stessa domanda è sbagliata (da parte del voting diu più modelli) vuol dire che il significato è sbagliato (o in contrasto).
+8. Creare uno script per lo scraping in modo che: un file con leggi venga inizialmente messo in input, questo venga analizzato e vengano presi i riferimenti a leggi anche non presenti in quel testo, nel caso utilizzare uno script per andare sulla pagina web (di normattiva, per esempio), scaricare il file, darlo in pasto all'LLM e ricominciare la procedura.
+9. (opzionale) Brute Force, se non riusciamo a generare la tabella attraverso modelli open source, utilizzare modelli non open source (GPT4, Gemini...)
 
 Prova a passargli sia a mo di domanda+risposta corretta, che chunk di domande
 Prova a definirgli come fare la risposta
