@@ -82,3 +82,19 @@ Una volta finito, chiedi ai tre modelli se esiste una legge contraria o simile e
 
 
 Pipeline: File con leggi + prompt -> Modello(Llama...) -> Script per cliccare automaticamente sul sito (soluzione al blocco con parametri)
+
+
+# 2nd Approach
+Dataset comm -> trova GPT (chiedi per API) -> 
+abrogazione in normattiva
+
+prova a caricare tutto llama3 8B con torch_dtype="bfloat16" (senza quantizzazione)
+microsoft/Phi-3-medium-4k-instruct + awq quantization=kaitchup/Phi-3-medium-128k-instruct-awq-4bit
+microsoft/Phi-3-small-4k-instruct
+
+Prova la libreria wllm, che è una lib con diversi livelli di quantizazzione e ottimizzazione (esempio nella chat con molfetta)
+nel datasetat della cost "abrogat" o "antonim"
+
+Sei un esperto legale...ti do in input in testo, restituisci le coppie di leggi antinomie, Answer directly without any preamble or comment. Answer always using a correct Italian
+(fai una distinzione )
+Fai anche un test con i testi cercando "abrogato" su normattiva
