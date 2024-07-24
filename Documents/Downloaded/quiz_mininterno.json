@@ -1,0 +1,345 @@
+{
+    "questions": [
+      {
+        "number": 1,
+        "question": "Quale delle indicazioni che seguono è conforme alle prescrizioni dell'art. 81 della Costituzione in materia di bilancio dello Stato?",
+        "options": {
+          "A": "Con la legge di approvazione del bilancio, sono necessariamente stabiliti nuovi tributi e nuove spese",
+          "B": "Dopo l'approvazione del bilancio, non è possibile approvare leggi che importino nuove e maggiori spese",
+          "C": "Dopo l'approvazione del bilancio, ogni altra legge che importi nuove e maggiori spese deve indicare i mezzi per farvi fronte",
+          "D": "Solo prima dell'approvazione del bilancio, ogni altra legge che importi nuove e maggiori spese deve indicare i mezzi per farvi fronte"
+        }
+      },
+      {
+        "number": 2,
+        "question": "Il referendum popolare abrogativo non è ammesso... (art. 75 della Costituzione)",
+        "options": {
+          "A": "Per le leggi tributarie e di bilancio",
+          "B": "Solo per le leggi tributarie",
+          "C": "In tema di legge di stabilità e di bilancio",
+          "D": "Solo in tema di bilancio"
+        }
+      },
+      {
+        "number": 3,
+        "question": "Le Camere approvano annualmente, a mente della Costituzione:",
+        "options": {
+          "A": "I bilanci e il rendiconto consuntivo",
+          "B": "Nuovi tributi e nuove spese",
+          "C": "Solo il rendiconto consuntivo",
+          "D": "Solo il bilancio"
+        }
+      },
+      {
+        "number": 4,
+        "question": "Le leggi che importano nuove o maggiori spese, a norma della Costituzione:",
+        "options": {
+          "A": "Devono trovare copertura in sede di legge di stabilità",
+          "B": "Non devono indicare i mezzi per farvi fronte",
+          "C": "Devono indicare i mezzi per farvi fronte",
+          "D": "Possono essere approvate in deficit, salvo successivo ripiano, con legge"
+        }
+      },
+      {
+        "number": 5,
+        "question": "(art. 227 e ss., D.Lgs. 267/2000) La redazione di uno Stato Patrimoniale e Conto Economico:",
+        "options": {
+          "A": "È obbligatoria per tutti gli enti indicati nel il Dlgs 118/2011, seppure con introduzione graduale per gli enti locali con popolazione sotto ai 5.000 abitanti",
+          "B": "È obbligatoria solo per gli enti con popolazione superiore ai 5.000 abitanti",
+          "C": "Non è mai obbligatoria",
+          "D": "È facoltativa, solo per gli enti che lo hanno previsto nel regolamento"
+        }
+      },
+      {
+        "number": 6,
+        "question": "A mente del Titolo V della Costituzione il coordinamento della finanza pubblica e del sistema tributario sono:",
+        "options": {
+          "A": "Demandati alla legislazione esclusiva delle Province",
+          "B": "Demandati alla legislazione esclusiva delle Regioni",
+          "C": "Demandati alla legislazione concorrente",
+          "D": "Demandati alla legislazione esclusiva dello Stato"
+        }
+      },
+      {
+        "number": 7,
+        "question": "L'autonomia finanziaria di entrata e di spesa è riconosciuta (art. 119 della Costituzione) a:",
+        "options": {
+          "A": "Comuni, province, città metropolitane, regioni",
+          "B": "Solo ai Comuni",
+          "C": "Stato e regioni",
+          "D": "Stato, regioni e province autonome di Bolzano e Trento"
+        }
+      },
+      {
+        "number": 8,
+        "question": "Comuni, province, città metropolitane e regioni possono stabilire ed applicare tributi ed entrate propri (art. 119 della Costituzione):",
+        "options": {
+          "A": "Solo secondo i principi di coordinemaneto della finanza pubblica",
+          "B": "In armonia con la Costituzione e secondo i principi di coordinamento della finanza pubblica e del sistema tributario",
+          "C": "Solo in materia di compartecipazioni a tributi erariali",
+          "D": "In armonia con la Costituzione e secondo i principi di coordinamento della finanza pubblica, ma non del sistema tributario"
+        }
+      },
+      {
+        "number": 9,
+        "question": "L'esercizio provvisorio del bilancio (art. 81 della Costituzione):",
+        "options": {
+          "A": "Può essere concesso solo per legge e per un periodo non superiore a quattro mesi",
+          "B": "Può essere concesso per legge, senza limiti temporali",
+          "C": "Può essere concesso per decreto legge, nei casi di necessità ed urgenza",
+          "D": "Può essere concesso solo per legge e per un periodo superiore a quattro mesi"
+        }
+      },
+      {
+        "number": 10,
+        "question": "Secondo l'art. 119 della Costituzione, il fondo perequativo è istituito:",
+        "options": {
+          "A": "Con legge dello Stato, con vincoli di destinazione, per i territori con minore capacità fiscale per abitante",
+          "B": "Con legge della regione, senza vincoli di destinazione",
+          "C": "Con legge dello Stato, senza vincoli di destinazione, per i territori con minore capacità fiscale per abitante",
+          "D": "Con legge della regione, con vincoli di destinazione"
+        }
+      },
+      {
+        "number": 11,
+        "question": "Le risorse derivanti da tributi propri, compartecipazioni e fondo perequativo servono a comuni, province, città metropolitane e regioni per (art. 119 della Costituzione):",
+        "options": {
+          "A": "Finanziare le funzioni fondamentali",
+          "B": "Finanziare integralmente le funzioni pubbliche loro attribuite",
+          "C": "Finanziare solo in modo parziale le funzioni pubbliche loro attribuite",
+          "D": "Finanziare i servizi essenziali"
+        }
+      },
+      {
+        "number": 12,
+        "question": "Per promuovere lo sviluppo economico, rimuovere gli squilibri, favorire l'esercizio dei diritti è prevista, dall'art. 119 della Costituzione, l'erogazione di:",
+        "options": {
+          "A": "Risorse aggiuntive, da parte dello Stato e delle regioni, a favore degli enti locali del Mezzogiorno",
+          "B": "Risorse aggiuntive ed interventi speciali, da parte dello Stato, a favore di determinati comuni, province, città metropolitane, regioni",
+          "C": "Risorse aggiuntive ed interventi speciali a favore di tutti gli enti locali e regioni",
+          "D": "Risorse aggiuntive ed interventi speciali, da parte dello Stato, esclusivamente a favore delle regioni"
+        }
+      },
+      {
+        "number": 13,
+        "question": "Comuni, province, città metropolitane, regioni possono ricorrere all'indebitamento (art. 119 della Costituzione):",
+        "options": {
+          "A": "Solo per finanziare spese di investimento, ma con garanzia dello Stato",
+          "B": "Per ogni forma di spesa, con garanzia della regione",
+          "C": "Solo per finanziare spese di investimento",
+          "D": "Per ogni forma di spesa, tranne che per finanziare spese di investimento"
+        }
+      },
+      {
+        "number": 14,
+        "question": "(art. 151, D.Lgs. n. 267/2000 e artt. 11-bis e seguenti nonché All. 4/4, D.Lgs. n. 118/2011) Entro il 30 settembre gli enti locali devono redigere il bilancio consolidato relativo:",
+        "options": {
+          "A": "Ai bilanci e rapporti infragruppo del Comune e degli enti e società incluse nel perimetro di consolidamento",
+          "B": "agli Enti inclusi nel perimetro di consolidamento definito discrezionalmente dal Comune nel proprio regolamento di contabilità",
+          "C": "Ai bilanci ed ai rapporti infragruppo del Comune e delle società controllate",
+          "D": "Ai bilanci delle partecipate del Comune"
+        }
+      },
+      {
+        "number": 15,
+        "question": "Secondo l'articolo 239, comma 1, lettera c) del Tuel, l'organo di revisione svolge le funzioni di vigilanza utilizzando anche:",
+        "options": {
+            "A": "motivate tecniche di campionamento",
+            "B": "prassi elaborate dalle Camere di Commercio",
+            "C": "elenchi di operazioni predisposti dal responsabile del servizio finanziario",
+            "D": "la diligenza del buon padre di famiglia"
+        }
+    },
+    {
+        "number": 16,
+        "question": "Quali sono gli enti locali che sono obbligati a redigere il bilancio consolidato?",
+        "options": {
+            "A": "tutti",
+            "B": "solo gli enti con popolazione superiore a 15.000 abitanti",
+            "C": "solo gli enti in disavanzo",
+            "D": "gli enti con popolazione superiore ai 5.000 abitanti, per gli altri è facoltativo"
+        }
+    },
+    {
+        "number": 17,
+        "question": "La ricognizione annuale dei residui attivi e passivi consente di individuare formalmente, fra l'altro:",
+        "options": {
+            "A": "l'esatta ragione sociale dei fornitori dell'ente relativamente ai quali sono state impegnate le spese",
+            "B": "le somme da rimborsare al tesoriere per il servizio svolto",
+            "C": "i crediti di dubbia e difficile esazione",
+            "D": "l'importo del maggior compenso da riconoscere al revisore dei conti per l'attività svolta dal medesimo relativamente al riconoscimento di debiti fuori bilancio"
+        }
+    },
+    {
+        "number": 18,
+        "question": "Il fondo di riserva da prevedere in bilancio, qualora l'ente locale non si trovi in una delle situazioni previste dagli articoli 195 e 222 del Tuel, deve essere:",
+        "options": {
+            "A": "non inferiore allo 0,30 per cento del totale delle spese correnti di competenza inizialmente previste in bilancio",
+            "B": "non inferiore allo 0,45 per cento del totale delle spese correnti di competenza inizialmente previste in bilancio",
+            "C": "non inferiore al 2 per cento del totale delle spese correnti di competenza inizialmente previste in bilancio",
+            "D": "non superiore allo 0,30 per cento del totale delle spese correnti di competenza inizialmente previste in bilancio"
+        }
+    },
+    {
+        "number": 19,
+        "question": "Gli stanziamenti di entrata del bilancio di previsione del Comune fanno riferimento ad un arco temporale:",
+        "options": {
+            "A": "annuale ma solo per la competenza",
+            "B": "annuale ma solo per la cassa",
+            "C": "biennale",
+            "D": "triennale sia per la cassa che per la competenza"
+        }
+    },
+    {
+        "number": 20,
+        "question": "Quale strumento di programmazione ha sostituito la legge di stabilità?",
+        "options": {
+            "A": "La decisione di finanza pubblica",
+            "B": "La Relazione sull'economia e la finanza pubblica",
+            "C": "La legge di bilancio",
+            "D": "Il decreto legge"
+        }
+    },
+    {
+        "number": 21,
+        "question": "Il referto conclusivo sul controllo di gestione dell'ente locale va inviato:",
+        "options": {
+            "A": "al tesoriere comunale",
+            "B": "al MEF",
+            "C": "alla Corte dei conti",
+            "D": "al giudice di pace"
+        }
+    },
+    {
+        "number": 22,
+        "question": "L'aggiornamento del Programma di stabilità viene presentato:",
+        "options": {
+            "A": "Dal Senato alla Camera dei Deputati",
+            "B": "Dalla Conferenza unificata Stato-Regioni e Stato-Città-Autonomie locali alle Camere",
+            "C": "Dal Governo alla Conferenza unificata Stato-Regioni e Stato-Città-Autonomie locali",
+            "D": "Dal Governo al Consiglio dell'Unione europea e alla Commissione europea"
+        }
+    },
+    {
+        "number": 23,
+        "question": "Il conto economico degli enti locali evidenzia:",
+        "options": {
+            "A": "i componenti positivi e negativi della gestione di competenza economica dell'esercizio considerato, rilevati dalla contabilità economico-patrimoniale",
+            "B": "le previsioni dei ricavi per l'esercizio successivo",
+            "C": "le previsioni dei costi da sostenere nell'esercizio successivo",
+            "D": "i risultati finanziari della spesa"
+        }
+    },
+    {
+        "number": 24,
+        "question": "I principi contabili, per le pubbliche amministrazioni che adottano la contabilità finanziaria, approvati con il d.lgs. 118/2011 e successive modificazioni:",
+        "options": {
+            "A": "possono essere modificati con provvedimento del sindaco che li adatti alla prassi seguita dall'ente",
+            "B": "sono obbligatori se inseriti nel regolamento di contabilità dell'ente",
+            "C": "sono obbligatori, fatti salvi i casi in cui la legge consenta una deroga",
+            "D": "possono essere applicati in via facoltativa dall'ente"
+        }
+    },
+    {
+        "number": 25,
+        "question": "La Relazione previsionale e programmatica ...",
+        "options": {
+            "A": "Viene presentata dal Ministro dello sviluppo economico al Presidente della Repubblica entro il mese di maggio",
+            "B": "E' stata soppressa dalla l. 196/2009",
+            "C": "Viene presentata dal Ministro dell'economia e delle finanze alle Camere entro il 30 settembre",
+            "D": "Viene presentata dal Ministro dell'economia e delle finanze alle Camere entro il 15 aprile"
+        }
+    },
+    {
+        "number": 26,
+        "question": "Sono, per esempio, servizi per conto di terzi:",
+        "options": {
+            "A": "le operazioni svolte dall'ente per l'attività istituzionale",
+            "B": "le operazioni svolte dall'ente nelle attività commerciali",
+            "C": "le operazioni svolte dall'ente solo come mero esecutore della spesa, nei casi in cui l'ente riceva risorse da trasferire a soggetti già individuati, sulla base di tempi e di importi predefiniti",
+            "D": "le operazioni svolte in base a convenzioni con altre amministrazioni pubbliche, che prevedono di trasferire risorse alle imprese, in base a graduatorie formate autonomamente dall'ente"
+        }
+    },
+    {
+        "number": 27,
+        "question": "Gli strumenti di programmazione finanziaria e di bilancio sono presentati al Parlamento alle scadenze indicate dalla legge n. 196/2009. É prevista la scadenza del 30 settembre ...",
+        "options": {
+            "A": "Per la Relazione previsionale e programmatica",
+            "B": "Per la Relazione sul conto consolidato di cassa delle amministrazioni pubbliche, riferita al primo semestre",
+            "C": "Per la Relazione previsionale e programmatica, riferita al primo trimestre",
+            "D": "Per la Decisione di finanza pubblica"
+        }
+    },
+    {
+        "number": 28,
+        "question": "Ai sensi della legge n. 196/2009 (art. 44), il saldo di cassa del settore statale:",
+        "options": {
+            "A": "Viene esposto con riferimento alle stime di cassa del bilancio annuale e del bilancio pluriennale",
+            "B": "Risulta dal consolidamento tra flussi di cassa del bilancio dello Stato e della Tesoreria statale",
+            "C": "Viene esposto con riferimento alle stime di cassa del bilancio trimestrale e del bilancio semestrale",
+            "D": "Viene esposto con riferimento alle stime di cassa e di competenza del bilancio"
+        }
+    },
+    {
+        "number": 29,
+        "question": "(art. 228, D.Lgs. 267/2000 e All. 4/2, D.Lgs. 118/2011) La ricognizione annuale dei residui attivi da parte dell'ente locale consente di individuare formalmente:",
+        "options": {
+            "A": "i creditori dell'ente",
+            "B": "i crediti di dubbia e difficile esazione, per i quali si procede all'accantonamento a fondo crediti di dubbia e difficile esigibilità, vincolando a tal fine una quota dell'avanzo di amministrazione",
+            "C": "l'importo da liquidare agli organi istituzionali, le anticipazioni di tesoreria e il compenso all'organo di revisione",
+            "D": "i debiti insussistenti in quanto riscuotibili nell'esercizio successivo"
+        }
+    },
+    {
+        "number": 30,
+        "question": "(All. 1, D.Lgs. 118/2011, principio generale n. 16) Ai sensi del principio generale n. 16 'Principio della competenza finanziaria' di cui all'allegato 1 del D.Lgs. n. 118/2011 e s.m.i. il principio della competenza finanziaria costituisce:",
+        "options": {
+            "A": "il criterio di imputazione agli esercizi finanziari delle obbligazioni giuridicamente perfezionate attive e passive (accertamenti e impegni)",
+            "B": "il criterio di imputazione agli esercizi finanziari delle obbligazioni attive e passive anche se giuridicamente saranno perfezionate nei primi mesi dell'anno successivo a quello di riferimento",
+            "C": "il criterio di imputazione agli esercizi di bilancio delle entrate e delle spese che si prevedono di competenza di tali esercizi",
+            "D": "il criterio che adottano le pubbliche amministrazioni ai fini dell'imputazione agli esercizi dei costi e dei ricavi che si prevedono di competenza di tali esercizi secondo una logica economico-patrimoniale"
+        }
+    },
+    {
+        "number": 31,
+        "question": "(Allegato 1, d.lgs. 118/2011, par.2) Il principio di unità secondo l'allegato 1 del decreto legislativo n. 118 del 2011 sta ad indicare che:",
+        "options": {
+            "A": "Nel bilancio di previsione e nei documenti di rendicontazione le entrate devono essere iscritte al lordo delle spese sostenute per la riscossione",
+            "B": "Il sistema di bilancio ricomprende tutte le finalità e gli obiettivi di gestione, nonché i relativi valori finanziari, economici e patrimoniali riconducibili alla singola amministrazione pubblica",
+            "C": "Il principio di unità implica la possibilità di fronteggiare gli effetti derivanti dalle circostanze imprevedibili e straordinarie",
+            "D": "La singola amministrazione pubblica è una entità giuridica unica e unitaria; pertanto, deve essere unico e unitario sia il suo bilancio di previsione, sia il suo rendiconto e bilancio d'esercizio"
+        }
+    },
+    {
+        "number": 32,
+        "question": "(Allegato 1, d.lgs. 118/2011, par.4) Il principio di integrità secondo l'allegato 1 del decreto legislativo n. 118 del 2011 comporta che",
+        "options": {
+            "A": "Deve farsi riferimento al principio del true and fair view",
+            "B": "Un dato deve essere significativo e integro per assolvere alle esigenze informative",
+            "C": "Nel bilancio di previsione e nei documenti di rendicontazione le entrate devono essere iscritte al lordo delle spese sostenute per la riscossione",
+            "D": "Non possa farsi eccessivo ricorso agli strumenti di flessibilità va visto come fatto negativo"
+        }
+    },
+    {
+        "number": 33,
+        "question": "(Allegato 1, d.lgs. 118/2011, par.7) Il principio di flessibilità secondo l'allegato 1 del decreto legislativo n. 118 del 2011",
+        "options": {
+            "A": "E' volto a trovare all'interno dei documenti contabili di programmazione e previsione di bilancio la possibilità di fronteggiare gli effetti derivanti dalle circostanze imprevedibili e straordinarie",
+            "B": "E' volto a trovare all'interno dei documenti contabili la possibilità di fronteggiare gli effetti derivanti dalle circostanze prevedibili e ordinarie",
+            "C": "Implica che i dati contabili di bilancio devono rappresentare in maniera dinamica le reali condizioni dell'ente",
+            "D": "Implica che le entrate devono essere iscritte al lordo delle spese sostenute per la riscossione"
+        }
+    },
+    {
+        "number": 34,
+        "question": "(Allegato 1, d.lgs. 118/2011, par.2) Alla luce del principio di unità come previsto dall'allegato 1 del d.lgs. 118/2011",
+        "options": {
+            "A": "I documenti contabili non possono essere articolati in maniera tale da destinare alcune fonti di entrata a copertura solo di determinate e specifiche spese; tale regola non si applica agli enti in dissesto",
+            "B": "I documenti contabili possono essere normalmente articolati in maniera tale da destinare alcune fonti di entrata a copertura solo di determinate e specifiche spese",
+            "C": "I documenti contabili non possono essere articolati in maniera tale da destinare alcune fonti di entrata a copertura solo di determinate e specifiche spese, salvo diversa disposizione normativa di disciplina delle entrate vincolate",
+            "D": "I documenti contabili non possono essere articolati in maniera tale da destinare alcune fonti di entrata a copertura solo di determinate e specifiche spese, salva espressa autorizzazione del Ministero dell'Economia e delle Finanze"
+        }
+    }
+    ]
+  }
+  
