@@ -343,7 +343,7 @@
     {
         "number": 35,
         "question": "(Allegato 1, d.lgs. 118/2011, par.3) Selezionare l'affermazione compatibile con il principio di universalità posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Eccetto che per gli enti locali in dissesto, sono compatibili con il principio dell'universalità le gestioni fuori bilancio",
           "B": "Sono compatibili con il principio dell'universalità le gestioni fuori bilancio",
           "C": "Sono incompatibili con il principio dell'universalità le gestioni fuori bilancio",
@@ -353,7 +353,7 @@
       {
         "number": 36,
         "question": "(Allegato 1, d.lgs. 118/2011, par.5) Selezionare l'affermazione compatibile con il principio di veridicità posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Il principio della veridicità non si richiede una rigorosa valutazione dei flussi finanziari (e nel caso anche economici)",
           "B": "Il principio della veridicità si applica non solo ai documenti di rendicontazione e alla gestione, ma anche ai documenti di previsione",
           "C": "Il principio della veridicità è sinonimo del principio di flessibilità",
@@ -363,7 +363,7 @@
       {
         "number": 37,
         "question": "(Allegato 1, d.lgs. 118/2011, par.9) Selezionare l'affermazione compatibile con il principio di prudenza posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Nel bilancio di previsione possono essere iscritte solo le componenti positive iscritte già nel fondo crediti di dubbia esigibilità",
           "B": "Nel bilancio di previsione devono essere iscritte solo le componenti positive, purché siano assolutamente aleatorie",
           "C": "Nel bilancio di previsione devono essere iscritte solo le componenti positive, anche quelle che non saranno disponibili",
@@ -373,7 +373,7 @@
       {
         "number": 38,
         "question": "(Allegato 1, d.lgs. 118/2011, par.11) Selezionare l'affermazione compatibile con il principio di continuità posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Le valutazioni contabili devono essere fondate su criteri tecnici e di stima sempre analoghi a quelli del passato e mai modificabili",
           "B": "Le valutazioni contabili devono essere fondate su criteri tecnici e di stima che abbiano la possibilità di continuare ad essere validi nel tempo, se le condizioni gestionali non saranno tali da evidenziare chiari e significativi cambiamenti",
           "C": "Le valutazioni contabili possono anche non essere fondate su criteri tecnici e di stima che abbiano la possibilità di continuare ad essere validi nel tempo",
@@ -383,7 +383,7 @@
       {
         "number": 39,
         "question": "Cosa sono i 'fondi speciali', così come definiti nella legge di contabilità e finanza pubblica (l. 196/2009)?",
-        "answers": {
+        "options": {
           "A": "Risorse destinate a finanziare provvedimenti legislativi che si prevede siano approvati nel corso degli esercizi finanziari compresi nel bilancio pluriennale",
           "B": "Risorse destinate a finanziare: spese obbligatorie, la cui dotazione nei capitoli di destinazione finale risulti insufficiente, e spese impreviste ed imprevedibili",
           "C": "Risorse destinate a finanziare: spese derivanti da provvedimenti legislativi già approvati, di cui è noto l'ammontare globale ma di cui occorre definire nel dettaglio la destinazione finale in termini di scopo e di amministrazione destinataria",
@@ -393,7 +393,7 @@
       {
         "number": 40,
         "question": "(Allegato 1, d.lgs. 118/2011, par.12) Selezionare l'affermazione coerente con il principio di comparabilità posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Gli utilizzatori delle informazioni di bilancio devono essere in grado di comparare nel tempo le informazioni, analitiche e sintetiche di singole o complessive poste economiche",
           "B": "Gli utilizzatori delle informazioni di bilancio non devono essere in grado di comparare nel tempo le informazioni, analitiche e sintetiche di singole o complessive poste economiche",
           "C": "Soltanto gli utilizzatori delle informazioni di bilancio, che si avvalgano del diritto di accesso previsto dalla legge n. 241 del 1990, sono autorizzati a comparare nel tempo le informazioni",
@@ -403,7 +403,7 @@
       {
         "number": 41,
         "question": "Quale dei seguenti provvedimenti legislativi ha introdotto nell'ordinamento italiano la 'legge di stabilità'?",
-        "answers": {
+        "options": {
           "A": "Legge 23/8/1988, n. 362",
           "B": "Legge 5/8/1978, n. 468",
           "C": "Legge 30/03/1989, n. 30",
@@ -413,7 +413,7 @@
       {
         "number": 42,
         "question": "(Allegato 1, d.lgs. 118/2011, par.15) Selezionare l'affermazione coerente con il principio di equilibrio di bilancio posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
           "A": "Il rispetto del principio di pareggio finanziario è sufficiente a soddisfare il principio generale dell'equilibrio del sistema di bilancio soltanto per gli enti locali",
           "B": "Il rispetto del principio di pareggio finanziario è rimesso alla valutazione degli enti in equilibrio",
           "C": "Il rispetto del principio di pareggio finanziario è sufficiente a soddisfare il principio generale dell'equilibrio del sistema di bilancio di ogni pubblica amministrazione",
@@ -421,9 +421,9 @@
         }
       },
       {
-        "question_number": 43,
+        "number": 43,
         "question": "(Allegato 1, d.lgs. 118/2011, par.15) Selezionare l'affermazione coerente con il principio di equilibrio di bilancio posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
             "A": "L'equilibrio finanziario del bilancio comporta necessariamente una stabilità anche di carattere economico e patrimoniale",
             "B": "L'equilibrio finanziario del bilancio non comporta necessariamente una stabilità anche di carattere economico e patrimoniale",
             "C": "L'equilibrio finanziario del bilancio comporta necessariamente una stabilità anche di carattere economico ma non di carattere patrimoniale",
@@ -431,9 +431,9 @@
         }
     },
     {
-        "question_number": 44,
+        "number": 44,
         "question": "(Allegato 1, d.lgs. 118/2011, par.17) Selezionare la pertinente definizione del principio di competenza economica secondo l'allegato 1 del decreto legislativo n. 118 del 2011",
-        "answers": {
+        "options": {
             "A": "L'effetto delle operazioni e degli altri eventi deve essere rilevato contabilmente ed attribuito all'esercizio al quale tali operazioni ed eventi si riferiscono e non a quello in cui si concretizzano i movimenti di denaro",
             "B": "L'effetto delle operazioni e degli altri eventi deve essere rilevato contabilmente ed attribuito sempre all'esercizio a quello in cui si concretizzano i relativi movimenti di denaro",
             "C": "L'effetto delle operazioni e degli altri eventi deve essere rilevato contabilmente ed attribuito all'esercizio indicato dall'organo di revisione",
@@ -441,9 +441,9 @@
         }
     },
     {
-        "question_number": 45,
+        "number": 45,
         "question": "Ai sensi della l. 196/2009, il progetto di bilancio annuale di previsione dello Stato è articolato, per l'entrata e per la spesa, in unità di voto. Da cosa sono costituite le unità di voto per la spesa?",
-        "answers": {
+        "options": {
             "A": "Dai programmi",
             "B": "Dalle unità previsionali di base",
             "C": "Dai macroaggregati",
@@ -451,9 +451,9 @@
         }
     },
     {
-        "question_number": 46,
+        "number": 46,
         "question": "Quale delle seguenti affermazioni in merito al fondo di riserva per le spese impreviste di cui all'art. 28 della l. 196 /2009, è corretta?",
-        "answers": {
+        "options": {
             "A": "I prelievi dal fondo di riserva non possono singolarmente superare lo 0,03 per cento dell'ammontare totale del fondo",
             "B": "Il fondo può essere utilizzato per integrare le sole dotazioni di competenza dei capitoli interessati",
             "C": "Il fondo provvede ad eventuali deficienze delle assegnazioni di bilancio che non riguardino le spese obbligatorie",
@@ -461,9 +461,9 @@
         }
     },
     {
-        "question_number": 47,
+        "number": 47,
         "question": "Il Ministro dell'Economia e delle Finanze presenta al Parlamento un disegno di legge ai fini dell'assestamento delle previsioni di bilancio ...",
-        "answers": {
+        "options": {
             "A": "Entro il mese di settembre di ciascun anno",
             "B": "Entro il mese di giugno di ciascun anno",
             "C": "Entro il mese di dicembre di ciascun anno",
@@ -471,9 +471,9 @@
         }
     },
     {
-        "question_number": 48,
+        "number": 48,
         "question": "(Allegato 1, d.lgs. 118/2011, par.11) Selezionare l'affermazione coerente con il principio di costanza posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
             "A": "Il cambiamento dei criteri particolari di valutazione adottati deve avvenire ogni tre anni",
             "B": "L'eventuale cambiamento dei criteri particolari di valutazione deve rappresentare un'eccezione nel tempo opportunamente descritta e documentata in apposite relazioni",
             "C": "L'eventuale cambiamento dei criteri particolari di valutazione adottati non richiede alcun adempimento",
@@ -481,9 +481,9 @@
         }
     },
     {
-        "question_number": 49,
+        "number": 49,
         "question": "I criteri dell'integrità, dell'universalità e dell'unità del bilancio dello Stato costituiscono profili attuativi ...",
-        "answers": {
+        "options": {
             "A": "Dell'art. 111 della Costituzione",
             "B": "Dell'art. 81 della Costituzione",
             "C": "Dell'art. 112 della Costituzione",
@@ -491,9 +491,9 @@
         }
     },
     {
-        "question_number": 50,
+        "number": 50,
         "question": "L'esercizio provvisorio ...",
-        "answers": {
+        "options": {
             "A": "Si verifica quando il Parlamento non approva il bilancio entro il 31 gennaio",
             "B": "Per lo Stato può avere al massimo una durata di quattro mesi",
             "C": "Permette di protrarre la gestione finanziaria fino al 31 gennaio successivo, allo scopo di evitare la formazione di residui attivi e passivi",
@@ -501,9 +501,9 @@
         }
     },
     {
-        "question_number": 51,
+        "number": 51,
         "question": "Il bilancio annuale di previsione dello Stato ...",
-        "answers": {
+        "options": {
             "A": "E' oggetto di tre disegni di legge per le entrate e per le spese",
             "B": "E' oggetto di un unico disegno di legge",
             "C": "E' oggetto di diversi disegni di legge per ognuno dei suoi elementi strutturali, cioè stato di previsione dell'entrata, stati di previsione della spesa distinti per Ministeri, con le allegate appendici dei bilanci delle aziende ed amministrazioni autonome",
@@ -511,9 +511,9 @@
         }
     },
     {
-        "question_number": 52,
+        "number": 52,
         "question": "Durante l'esercizio provvisorio, la gestione del bilancio dello Stato è consentita per tanti dodicesimi della spesa prevista da ciascun capitolo quanti sono i mesi dell'esercizio provvisorio. Esistono eccezioni al riguardo?",
-        "answers": {
+        "options": {
             "A": "Sì, ma non possono essere pagate in deroga a tali limiti le spese obbligatorie e non suscettibili di impegni o di pagamenti frazionati in dodicesimi",
             "B": "Sì, possono essere pagate in deroga solo le spese del personale",
             "C": "No, non esistono eccezioni",
@@ -521,9 +521,9 @@
         }
     },
     {
-        "question_number": 53,
+        "number": 53,
         "question": "(Allegato 1, d.lgs. 118/2011, par.16) Selezionare l'affermazione coerente con il principio di competenza finanziaria posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
             "A": "Tutte le obbligazioni giuridicamente perfezionate attive e passive devono essere immediatamente registrate nelle scritture contabili e devono essere imputate al medesimo esercizio della registrazione",
             "B": "Tutte le obbligazioni giuridicamente perfezionate attive e passive devono essere registrate nelle scritture contabili quando l'obbligazione e' perfezionata, con imputazione all'esercizio in cui si verifica il flusso di cassa",
             "C": "Tutte le obbligazioni giuridicamente perfezionate attive e passive devono essere registrate nelle scritture contabili soltanto quando l'obbligazione viene a scadenza",
@@ -531,9 +531,9 @@
         }
     },
     {
-        "question_number": 54,
+        "number": 54,
         "question": "Chi presenta formalmente al Parlamento il rendiconto generale dello Stato dell'esercizio scaduto il 31 dicembre precedente?",
-        "answers": {
+        "options": {
             "A": "Il Ministro dell'Economia e delle Finanze",
             "B": "Il Ministro della Giustizia",
             "C": "La Corte dei conti",
@@ -541,9 +541,9 @@
         }
     },
     {
-        "question_number": 55,
+        "number": 55,
         "question": "Cosa sono i \"fondi di riserva\", così come definiti nella l. 196/2009?",
-        "answers": {
+        "options": {
             "A": "Risorse destinate a finanziare: spese derivanti da provvedimenti legislativi in corso di approvazione",
             "B": "Risorse destinate a finanziare spese obbligatorie, ma non spese impreviste",
             "C": "Risorse destinate a finanziare: spese obbligatorie, spese impreviste, integrazione delle autorizzazioni di cassa",
@@ -551,9 +551,9 @@
         }
     },
     {
-        "question_number": 56,
+        "number": 56,
         "question": "(Allegato 1, d.lgs. 118/2011, par.13.) Selezionare l'affermazione coerente con il principio di neutralità o imparzialità posto dall'allegato 1 del d.lgs. 118/2011",
-        "answers": {
+        "options": {
             "A": "La presenza di elementi soggettivi nella redazione del bilancio non è ammessa",
             "B": "La presenza di elementi soggettivi di stima non e' condizione per far venir meno l'imparzialità, la ragionevolezza e la verificabilità",
             "C": "La presenza di elementi soggettivi di stima fa venir meno l'imparzialità, la ragionevolezza e la verificabilità",
@@ -561,9 +561,9 @@
         }
     },
     {
-        "question_number": 57,
+        "number": 57,
         "question": "(art. 1 d.lgs. 118/2011) L'art. 1 del decreto legislativo n. 118 del 2011, nel disciplinare la c.d. armonizzazione contabile, richiama quale fondamento costituzionale",
-        "answers": {
+        "options": {
             "A": "Art. 24 Costituzione",
             "B": "Art. 117, secondo comma, lettera e), della Costituzione",
             "C": "Art. 80 Costituzione",
@@ -571,9 +571,9 @@
         }
     },
     {
-        "question_number": 58,
+        "number": 58,
         "question": "(art. 1 d.lgs. 118/2011) Il decreto legislativo n. 118 del 2011 ha ad oggetto",
-        "answers": {
+        "options": {
             "A": "Disciplina dell'armonizzazione dei sistemi contabili e degli schemi di bilancio delle Regioni e degli enti locali di cui al TUEL, esclusi i loro enti e organismi strumentali a contabilità civilistica",
             "B": "Disciplina dell'armonizzazione dei sistemi contabili e degli schemi di bilancio delle Regioni e degli enti locali di cui all'art. 2 del decreto legislativo 18 agosto 2000, n. 267, e dei loro enti e organismi strumentali",
             "C": "Disciplina dell'armonizzazione dei sistemi contabili e degli schemi di bilancio soltanto delle Regioni",
@@ -581,9 +581,9 @@
         }
     },
     {
-        "question_number": 59,
+        "number": 59,
         "question": "Il principio dell'integrità del bilancio:",
-        "answers": {
+        "options": {
             "A": "Esprime la necessità che le entrate e le uscite siano iscritte in bilancio al lordo di qualsiasi onere o provento ad esse collegato",
             "B": "Esprime la necessità che le entrate e le spese vengano ripartite secondo la natura, la causa e gli effetti che esse comportano sul sistema economico, ponendo un limite alla discrezionalità dei titolari della gestione",
             "C": "Esprime la necessità che tutte le entrate e le spese siano iscritte in bilancio in modo analitico",
@@ -591,9 +591,9 @@
         }
     },
     {
-        "question_number": 60,
+        "number": 60,
         "question": "Chi presenta al Parlamento il bilancio dello Stato?",
-        "answers": {
+        "options": {
             "A": "Il Governo",
             "B": "Il Ministro dello Sviluppo Economico",
             "C": "Il Ministro dell'Economia e delle Finanze",
@@ -601,18 +601,18 @@
         }
     },
     {
-        "question_number": 61,
+        "number": 61,
         "question": "(art.3, comma 4, d.lgs. 118/2011) Le entrate e le spese, accertate ed impegnate, non esigibili nell'esercizio considerato",
-        "answers": {
+        "options": {
             "A": "sono immediatamente reimputate all'esercizio in cui sono esigibili",
             "B": "Confluiscono nel fondo crediti di dubbia esigibilità",
             "C": "Confluiscono nel fondo per investimenti",
             "D": "sono reimputate all'esercizio immediatamente successivo"
         }
     },{
-        "question_number": 62,
+        "number": 62,
         "question": "La reimputazione degli impegni è effettuata",
-        "answers": {
+        "options": {
             "A": "incrementando, di pari importo, il fondo per gli investimenti, al fine di consentire, nell'entrata degli esercizi successivi, l'iscrizione del fondo a copertura delle spese reimputate",
             "B": "incrementando, di pari importo, il fondo pluriennale di spesa, al fine di consentire, nell'entrata degli esercizi successivi, l'iscrizione del fondo pluriennale vincolato a copertura delle spese reimputate",
             "C": "incrementando, di pari importo, il fondo crediti di dubbia esigibilità, al fine di consentire, nell'entrata degli esercizi successivi, la copertura delle spese reimputate",
@@ -620,9 +620,9 @@
         }
     },
     {
-        "question_number": 63,
+        "number": 63,
         "question": "Quale attività di bilancio è consentita durante l'esercizio provvisorio del bilancio dello Stato di cui all'art. 32 della l. 196/2009?",
-        "answers": {
+        "options": {
             "A": "E' consentita la gestione del bilancio per tanti dodicesimi della spesa prevista da ciascun capitolo quanti sono i mesi dell'esercizio provvisorio che non possono essere superiori a due",
             "B": "E' consentita la gestione del bilancio, limitata alla sola spesa corrente, per tanti dodicesimi della spesa prevista da ciascun capitolo quanti sono i mesi dell'esercizio provvisorio",
             "C": "E' consentita la gestione del bilancio per tanti dodicesimi della spesa prevista da ciascun capitolo quanti sono i mesi dell'esercizio provvisorio che non possono essere superiori a tre",
@@ -630,9 +630,9 @@
         }
     },
     {
-        "question_number": 64,
+        "number": 64,
         "question": "Il \"sistema di bilancio\" secondo la definizione recata dall'art. 9 d.lgs. 118/2011",
-        "answers": {
+        "options": {
             "A": "Ha l'esclusiva finalità di fornire informazioni in merito ai programmi futuri",
             "B": "Costituisce lo strumento essenziale per il processo di programmazione, previsione, gestione e rendicontazione",
             "C": "Costituisce uno strumento facoltativo per il processo di programmazione, previsione, gestione e rendicontazione",
@@ -640,9 +640,9 @@
         }
     },
     {
-        "question_number": 65,
+        "number": 65,
         "question": "Entro quale data deve essere presentato al Parlamento il rendiconto generale dello Stato dell'esercizio scaduto il 31 dicembre precedente?",
-        "answers": {
+        "options": {
             "A": "Entro il mese di giugno",
             "B": "Entro il mese di settembre",
             "C": "Entro il mese di maggio",
@@ -650,9 +650,9 @@
         }
     },
     {
-        "question_number": 66,
+        "number": 66,
         "question": "Il bilancio di previsione finanziario è di durata almeno",
-        "answers": {
+        "options": {
             "A": "triennale",
             "B": "quadriennale",
             "C": "Pari alla consiliatura",
@@ -660,9 +660,9 @@
         }
     },
     {
-        "question_number": 67,
+        "number": 67,
         "question": "La finanza regionale e la finanza statale concorrono:",
-        "answers": {
+        "options": {
             "A": "al perseguimento degli obiettivi di convergenza e di stabilità derivanti dall'appartenenza dell'Italia all'Unione europea",
             "B": "al benessere delle comunità amministrate",
             "C": "allo sviluppo del territorio",
@@ -670,9 +670,9 @@
         }
     },
     {
-        "question_number": 68,
+        "number": 68,
         "question": "Gli strumenti di programmazione finanziaria e di bilancio sono presentati al Parlamento alle scadenze indicate dalla legge n. 196/2009. E' prevista la scadenza del 15 ottobre ...",
-        "answers": {
+        "options": {
             "A": "Per il progetto di documento programmatico di bilancio",
             "B": "Per il documento di programmazione economico-finanziaria",
             "C": "Per i disegni di legge collegati alla manovra di finanza pubblica",
@@ -680,9 +680,9 @@
         }
     },
     {
-        "question_number": 69,
+        "number": 69,
         "question": "La rilevazione unitaria dei fatti di gestione deve essere garantita dalle regioni attraverso l'adozione:",
-        "answers": {
+        "options": {
             "A": "di tutti i documenti della programmazione",
             "B": "della contabilità finanziaria, della contabilità economico-patrimoniale, del piano dei conti integrato",
             "C": "del DEFR",
@@ -690,9 +690,9 @@
         }
     },
     {
-        "question_number": 70,
+        "number": 70,
         "question": "Il principio dell'universalità del bilancio:",
-        "answers": {
+        "options": {
             "A": "Esprime la necessità che le entrate e le uscite devono essere iscritte in bilancio per intero, al lordo di qualsiasi onere o provento ad esse collegato",
             "B": "Esprime la necessità che qualsiasi entrata e qualsiasi spesa non deve figurare in bilancio come tale",
             "C": "Esprime la necessità di redigere un bilancio organicamente unitario in modo che le singole spese finanzino indistintamente tutte le entrate",
@@ -700,9 +700,9 @@
         }
     },
     {
-        "question_number": 71,
+        "number": 71,
         "question": "Per l'approvazione del bilancio dello Stato:",
-        "answers": {
+        "options": {
             "A": "Non è mai prevista la procedura normale di esame ed approvazione",
             "B": "È prevista sempre la procedura normale di esame ed approvazione",
             "C": "È prevista la procedura abbreviata in casi d'urgenza",
