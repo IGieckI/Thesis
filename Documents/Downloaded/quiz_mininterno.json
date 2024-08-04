@@ -1241,7 +1241,7 @@
             }
         },
         {
-            "question_number": 124,
+            "number": 124,
             "question": "Il controllo strategico mira a ...",
             "options": {
                 "A": "Valutare l'insieme dei programmi o degli strumenti in rapporto alle risorse umane utilizzate",
@@ -1251,7 +1251,7 @@
             }
         },
         {
-            "question_number": 125,
+            "number": 125,
             "question": "A quale soggetto il d.lgs. n. 286/1999 attribuisce il compito di definire, ai fini del controllo di gestione, le unità organizzative a livello delle quali si intende misurare l'efficacia, efficienza ed economicità dell'azione amministrativa?",
             "options": {
                 "A": "Al Dipartimento della Ragioneria Generale dello Stato",
@@ -1261,7 +1261,7 @@
             }
         },
         {
-            "question_number": 126,
+            "number": 126,
             "question": "A mente del d. lgs. n. 279/97, al fine di consentire la valutazione economica dei servizi e delle attività prodotti, le pubbliche amministrazioni adottano:",
             "options": {
                 "A": "Un sistema di contabilità economica fondato su rilevazioni analitiche per centri di costo",
@@ -1271,7 +1271,7 @@
             }
         },
         {
-            "question_number": 127,
+            "number": 127,
             "question": "Il sistema di contabilità economica di cui al d. lgs. n. 279/97, tende a collegare:",
             "options": {
                 "A": "L'uso di tutte le risorse assegnate con la responsabilità dirigenziale per risultati",
@@ -1281,7 +1281,7 @@
             }
         },
         {
-            "question_number": 128,
+            "number": 128,
             "question": "Ai sensi del d. lgs. n. 279/97, le componenti del sistema pubblico di contabilità economica sono:",
             "options": {
                 "A": "i centri di costo e i servizi erogati",
@@ -1291,7 +1291,7 @@
             }
         },
         {
-            "question_number": 129,
+            "number": 129,
             "question": "In relazione ai beni demaniali, deve distinguersi tra demanio necessario e demanio accidentale:",
             "options": {
                 "A": "Nel primo sono ricompresi tutti quei beni che, per la loro utilità generale, non possono che appartenere allo Stato o agli altri enti pubblici territoriali; nel secondo rientrano quei beni che possono anche non essere demaniali",
@@ -1301,7 +1301,7 @@
             }
         },
         {
-            "question_number": 130,
+            "number": 130,
             "question": "Nel caso in cui un Ente pubblico territoriale intenda alienare un bene immobile del demanio culturale, quale dei seguenti soggetti ha diritto di prelazione?",
             "options": {
                 "A": "Nessuno: i beni immobili del demanio culturale non godono di tutela",
@@ -1311,7 +1311,7 @@
             }
         },
         {
-            "question_number": 131,
+            "number": 131,
             "question": "Sono beni dello Stato indisponibili per appartenenza, tra gli altri...",
             "options": {
                 "A": "Cose di interesse artistico e culturale non costituite in raccolte",
@@ -1321,7 +1321,7 @@
             }
         },
         {
-            "question_number": 132,
+            "number": 132,
             "question": "(art.. 186 TUEL) Il risultato di amministrazione",
             "options": {
                 "A": "è accertato con l'approvazione del rendiconto dell'ultimo esercizio chiuso ed è pari al fondo di cassa aumentato dei residui attivi e diminuito dei residui passivi",
@@ -1331,7 +1331,7 @@
             }
         },
         {
-            "question_number": 133,
+            "number": 133,
             "question": "I beni demaniali ...",
             "options": {
                 "A": "Se appartengono agli enti pubblici territoriali, sono classificati nella categoria dei beni patrimoniali indisponibili",
@@ -1341,7 +1341,7 @@
             }
         },
         {
-            "question_number": 134,
+            "number": 134,
             "question": "I beni demaniali ...",
             "options": {
                 "A": "Sono alienabili solo tra enti pubblici",
@@ -1351,7 +1351,7 @@
             }
         },
         {
-            "question_number": 135,
+            "number": 135,
             "question": "L'Agenzia delle Entrate:",
             "options": {
                 "A": "Ha il compito di perseguire il massimo livello di adempimento degli obblighi fiscali sia attraverso l'assistenza ai contribuenti, ma non può esercitare controlli diretti a contrastare gli inadempimenti e l'evasione fiscale",
@@ -1361,7 +1361,7 @@
             }
         },
         {
-            "question_number": 136,
+            "number": 136,
             "question": "Quale Agenzia fiscale è ente pubblico economico?",
             "options": {
                 "A": "L'Agenzia delle Entrate",
@@ -1371,7 +1371,7 @@
             }
         },
         {
-            "question_number": 137,
+            "number": 137,
             "question": "Quale fonte legislativa ha istituito l'Agenzia delle Entrate?",
             "options": {
                 "A": "Il d.lgs. n. 300/1999 di riforma dell'organizzazione del Governo",
@@ -1381,7 +1381,7 @@
             }
         },
         {
-            "question_number": 138,
+            "number": 138,
             "question": "Le Agenzie fiscali:",
             "options": {
                 "A": "Operano nell'esercizio delle funzioni pubbliche ad esse affidate in base ai principi di legalità, imparzialità e trasparenza",
@@ -1391,7 +1391,7 @@
             }
         },
         {
-            "question_number": 139,
+            "number": 139,
             "question": "Quale ministero ha competenza in materia di concessione del servizio di riscossione mediante ruolo?",
             "options": {
                 "A": "Congiuntamente i Ministeri dell'Economia e delle Finanze e dell'Interno",
@@ -1401,7 +1401,7 @@
             }
         },
         {
-            "question_number": 140,
+            "number": 140,
             "question": "Quante e quali Agenzie Fiscali sono state istituite dal d.lgs. n. 300/1999?",
             "options": {
                 "A": "Quattro: Entrate, Dogane, Territorio e Osservatorio Mercato Immobiliare",
@@ -1411,7 +1411,7 @@
             }
         },
         {
-            "question_number": 141,
+            "number": 141,
             "question": "Il d.lgs. n. 300/1999 ha attribuito la qualità di ente pubblico economico:",
             "options": {
                 "A": "All'Agenzia del Patrimonio",
@@ -1421,7 +1421,7 @@
             }
         },
         {
-            "question_number": 142,
+            "number": 142,
             "question": "Quale fonte legislativa ha istituito le Agenzie fiscali?",
             "options": {
                 "A": "La L. n. 340/2000",
@@ -1431,7 +1431,7 @@
             }
         },
         {
-            "question_number": 143,
+            "number": 143,
             "question": "Le Agenzie fiscali sono sottoposte all'alta vigilanza ...",
             "options": {
                 "A": "Del Consiglio di Stato",
@@ -1441,7 +1441,7 @@
             }
         },
         {
-            "question_number": 144,
+            "number": 144,
             "question": "Le Agenzie fiscali hanno autonomia:",
             "options": {
                 "A": "Amministrativa e organizzativa",
@@ -1451,7 +1451,7 @@
             }
         },
         {
-            "question_number": 145,
+            "number": 145,
             "question": "Ai sensi del d.lgs. n. 112/1999, chi esercita la vigilanza sui concessionari della riscossione al fine di assicurare la regolarità, la tempestività, l'efficienza e l'efficacia del servizio?",
             "options": {
                 "A": "Il Consiglio di Stato",
@@ -1461,7 +1461,7 @@
             }
         },
         {
-            "question_number": 146,
+            "number": 146,
             "question": "Le Agenzie fiscali:",
             "options": {
                 "A": "Godono di autonomia regolamentare e amministrativa, ma non di quella contabile e finanziaria",
@@ -1471,7 +1471,7 @@
             }
         },
         {
-            "question_number": 147,
+            "number": 147,
             "question": "Le quattro Agenzie Fiscali (Entrate, Dogane, Territorio, Demanio):",
             "options": {
                 "A": "Sono organi di controllo delle attività di gestione dei quattro Dipartimenti del M.E.F.",
@@ -1481,7 +1481,7 @@
             }
         },
         {
-            "question_number": 148,
+            "number": 148,
             "question": "La Ragioneria Generale dello Stato è organo centrale di supporto e verifica per Parlamento e Governo nelle politiche, nei processi e negli adempimenti di bilancio. Essa ...",
             "options": {
                 "A": "Si occupa delle gestione finanziaria, della cessione e del collocamento sul mercato finanziario delle partecipazioni azionarie dello Stato",
@@ -1491,7 +1491,7 @@
             }
         },
         {
-            "question_number": 149,
+            "number": 149,
             "question": "Ai sensi dell'art. 187 Tuel il risultato di amministrazione negli enti locali è distinto in",
             "options": {
                 "A": "in fondi liberi, fondi vincolati e fondi accantonati",
@@ -1501,7 +1501,7 @@
             }
         },
         {
-            "question_number": 150,
+            "number": 150,
             "question": "I fondi destinati agli investimenti",
             "options": {
                 "A": "sono costituiti dalle entrate in c/capitale con vincoli di specifica destinazione non spese, e sono utilizzabili con provvedimento di variazione di bilancio solo a seguito dell'approvazione del rendiconto",
@@ -1511,7 +1511,7 @@
             }
         },
         {
-            "question_number": 151,
+            "number": 151,
             "question": "La Ragioneria Generale dello Stato è organo centrale di supporto e verifica per Parlamento e Governo nelle politiche, nei processi e negli adempimenti di bilancio. Essa ...",
             "options": {
                 "A": "E' chiamata ad intervenire in sede di esame preventivo su ogni disegno di legge o atto del Governo che possa avere ripercussione esclusivamente indiretta sulla gestione economico-finanziaria dello Stato",
@@ -1521,7 +1521,7 @@
             }
         },
         {
-            "question_number": 152,
+            "number": 152,
             "question": "Ai sensi dell'art. 187 Tuel la quota libera dell'avanzo di amministrazione dell'esercizio precedente, accertato ai sensi dell'art. 186 Tuel, può essere utilizzata con provvedimento di variazione di bilancio per le finalità di seguito indicate",
             "options": {
                 "A": "1)- per i debiti fuori bilancio ma solo per quelli relativi alle sentenze esecutive; 2)- per spese economali",
@@ -1531,7 +1531,7 @@
             }
         },
         {
-            "question_number": 153,
+            "number": 153,
             "question": "La proprietà privata può essere espropriata:",
             "options": {
                 "A": "Nei casi previsti dalla legge, eventualmente anche senza indennizzo",
@@ -1541,7 +1541,7 @@
             }
         },
         {
-            "question_number": 154,
+            "number": 154,
             "question": "Nel novellato Tit. V della Costituzione, l'autonomia finanziaria di entrata e spesa è riconosciuta a:",
             "options": {
                 "A": "Stato e regioni",
@@ -1551,7 +1551,7 @@
             }
         },
         {
-            "question_number": 155,
+            "number": 155,
             "question": "L'autonomia impositiva degli enti substatali deve realizzarsi:",
             "options": {
                 "A": "Solo in materia di compartecipazioni a tributi erariali",
@@ -1561,7 +1561,7 @@
             }
         },
         {
-            "question_number": 156,
+            "number": 156,
             "question": "Il fondo perequativo trova fondamento legislativo:",
             "options": {
                 "A": "Nella legge regionale, con vincoli di destinazione",
@@ -1571,7 +1571,7 @@
             }
         },
         {
-            "question_number": 157,
+            "number": 157,
             "question": "Mediante tributi propri e compartecipazioni gli enti substatali:",
             "options": {
                 "A": "Devono finanziare le spese correnti",
@@ -1581,7 +1581,7 @@
             }
         },
         {
-            "question_number": 158,
+            "number": 158,
             "question": "In un'ottica di monitoraggio della spesa pubblica, le relazioni trimestrali di cassa:",
             "options": {
                 "A": "Vengono presentate dal ministro dell'economia e delle finanze e devono essere approvate con semplice delibera",
@@ -1589,6 +1589,86 @@
                 "C": "Vengono presentate dal ministro dell'economia e delle finanze al Parlamento a fini di verifica, ma non devono essere approvate",
                 "D": "Vengono presentate dal ministro dello Sviluppo Economico al Parlamento a fini di verifica e devono essere approvate con legge"
             }
-        }
+        },
+        {
+            "number": 159,
+            "question": "Il criterio di integrità implica che:",
+            "options": {
+              "A": "Tutte le entrate e tutte le spese devono essere iscritte in bilancio al netto",
+              "B": "Tutte le entrate devono essere iscritte in bilancio al lordo delle spese di riscossione e di eventuali altre spese ad esse connesse e le spese senza alcuna riduzione delle correlative entrate",
+              "C": "Nessuna entrata deve essere iscritta in bilancio al lordo delle spese di riscossione e di eventuali altre spese ad esse connesse",
+              "D": "Tutte le entrate e le spese devono essere iscritte in bilancio"
+            }
+          },
+          {
+            "number": 160,
+            "question": "La gestione di fondi fuori del bilancio, in base ai criteri di universalità e unità:",
+            "options": {
+              "A": "è sempre permessa",
+              "B": "è vietata , ad eccezione dei casi consentiti e regolati dalla legge di riordino complessivo della materia",
+              "C": "è vietata , salvo espressa autorizzazione del Parlamento",
+              "D": "è vietata in assoluto"
+            }
+          },
+          {
+            "number": 161,
+            "question": "I fondi speciali di cui alla legge196/2009 prevedono che le somme destinate alla copertura dei provvedimenti legislativi in corso di approvazione sono:",
+            "options": {
+              "A": "Indicate distintamente per la parte corrente e per la parte in conto capitale, per ministeri e programmi",
+              "B": "Indicate complessivamente, per la parte corrente e per la parte in conto capitale, per ministeri e programmi",
+              "C": "Indicate complessivamente per la parte corrente e per la parte in conto capitale, distintamente per ministeri e programmi",
+              "D": "Indicate distintamente per la parte corrente e per la parte in conto capitale, per ministeri"
+            }
+          },
+          {
+            "number": 162,
+            "question": "I fondi speciali di cui alla legge 196/2009 sono iscritti:",
+            "options": {
+              "A": "Nello stato di previsione del ministero dello Sviluppo Economico in appositi capitoli la cui riduzione, ai fini dell'integrazione per competenza e cassa di capitoli esistenti o di nuovi capitoli, può avvenire solo prima della pubblicazione dei provvedimenti legislativi che li utilizzano",
+              "B": "Nello stato di previsione del ministero dell'economia e delle finanze, in appositi capitoli, per essere utilizzati solo dopo l'approvazione dei provvedimenti legislativi che li utilizzano",
+              "C": "Nello stato di previsione del ministero dell'economia e delle finanze in appositi capitoli, per essere utilizzati quando i provvedimenti legislativi che li utilizzano sono pubblicati",
+              "D": "Nello stato di previsione del ministero dell'economia e delle finanze in appositi capitoli la cui riduzione, ai fini dell'integrazione per competenza e cassa di capitoli esistenti o di nuovi capitoli, può avvenire solo dopo la pubblicazione dei provvedimenti legislativi che li utilizzano"
+            }
+          },
+          {
+            "number": 163,
+            "question": "Le quote dei fondi speciali di cui alla legge 196/2009 costituiscono:",
+            "options": {
+              "A": "Per la parte corrente e, se non corrispondono a progetti di legge già approvati da un ramo del Parlamento, per la parte di conto capitale, economie di spesa",
+              "B": "Per la parte corrente e, se non corrispondono a progetti di legge già approvati da un ramo del Parlamento, per la parte di conto capitale, economie di bilancio",
+              "C": "Per la parte corrente e, se corrispondono a progetti di legge già approvati da un ramo del Parlamento, per la parte di conto capitale, economie di bilancio",
+              "D": "Per la parte corrente e, se non corrispondono a progetti di legge già approvati dal Parlamento, per la parte di conto capitale, economie di bilancio"
+            }
+          },
+          {
+            "number": 164,
+            "question": "Costituiscono quota vincolata del risultato di amministrazione, ai sensi dell'art. 187 Tuel, le entrate accertate e le corrispondenti economie di bilancio derivanti da mutui e finanziamenti contratti per il finanziamento di investimenti determinati?",
+            "options": {
+              "A": "Si, sempre",
+              "B": "No, mai",
+              "C": "Sì, ma soltanto purché si tratti di investimenti cofinanziati dall'Unione europea",
+              "D": "Sì, purché l'ente abbia rispettato gli equilibri di bilancio"
+            }
+          },
+          {
+            "number": 165,
+            "question": "Ai sensi dell'art. 189 Tuel il disavanzo di amministrazione può anche essere ripianato negli esercizi successivi considerati nel bilancio di previsione",
+            "options": {
+              "A": "senza limitazioni temporali",
+              "B": "in ogni caso non oltre i due anni",
+              "C": "in ogni caso non oltre la durata della consiliatura",
+              "D": "anche oltre la durata della consiliatura"
+            }
+          },
+          {
+            "number": 166,
+            "question": "L'art. 1 del d.lgs. 286/1999 illustra i principi generali del controllo interno nelle P.A. e definisce il controllo di regolarità amministrativa e contabile come lo strumento più adeguato a ...",
+            "options": {
+              "A": "Verificare l'efficacia dell'azione amministrativa",
+              "B": "Monitorare efficienza ed economicità dell'azione amministrativa",
+              "C": "Garantire la legittimità e la regolarità, ma non la correttezza dell'azione amministrativa",
+              "D": "Garantire la legittimità, regolarità e correttezza dell'azione amministrativa"
+            }
+          }
     ]
 }
