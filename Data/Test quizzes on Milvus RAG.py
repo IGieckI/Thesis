@@ -2,7 +2,7 @@ import os
 from tqdm import tqdm
 import random
 import pandas as pd
-from transformers import AutoTokenizer, AutoModel, pipeline, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModel, pipeline, AutoModelForCausalLM, LlamaForCausalLM
 from awq import AutoAWQForCausalLM
 import torch
 from difflib import SequenceMatcher
@@ -55,11 +55,11 @@ def create_collection():
     
     return laws_collection
 
-def load_model(model_name):    
+def load_model(model_name, device):    
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     
     # Normal model
-    model = AutoModel.from_pretrained(model_name)
+    #model = LlamaForCausalLM.from_pretrained(model_name)
     
     # Quantized model v1
     #quant_config = { "zero_point": True, "q_group_size": 128, "w_bit": 4, "version": "GEMM" }
@@ -67,27 +67,33 @@ def load_model(model_name):
     #model.quantize(tokenizer, quant_config=quant_config)
     
     # Quantized model v2
-    #model = AutoModelForCausalLM.from_pretrained(model_name, load_in_4bit=True, device_map="auto")
-        
+    model = LlamaForCausalLM.from_pretrained(model_name, load_in_4bit=True, device_map="cuda")
+    
+    #model.to(device)
+    
     return model, tokenizer
 
-def generate_embedding(text, tokenizer, model):
-    inputs = tokenizer(text, return_tensors="pt", max_length=128, truncation=True)
-    
+def generate_embedding(text, tokenizer, model, device):
+    # Move input tensors to the specified device
+    inputs = tokenizer(text, return_tensors="pt", max_length=128, truncation=True).to(device)
+
     with torch.no_grad():
-        outputs = model(**inputs)
-    
-    embedding_tensor = outputs.last_hidden_state.mean(dim=1).squeeze()
-    embedding_list = embedding_tensor.tolist()
-    
+        outputs = model(**inputs, output_hidden_states=True)
+
+    # Move hidden states to the specified device and compute the embedding
+    hidden_states = outputs.hidden_states[-1].to(device)  # Get the last layer's hidden states
+    embedding_tensor = hidden_states.mean(dim=1).squeeze()  # Average pooling over the sequence length
+    embedding_list = embedding_tensor.cpu().tolist()  # Move the embedding back to CPU and convert to list
+
     return embedding_list
 
-def load_data_and_generate_embeddings(data, model, tokenizer):
+
+def load_data_and_generate_embeddings(data, model, tokenizer, device):
     data = data[:3]
 
     embeddings = []
     for cc in tqdm(data["Comma content"], total=data.shape[0]):
-        embeddings.append(generate_embedding(cc, tokenizer, model))
+        embeddings.append(generate_embedding(cc, tokenizer, model, device))
     data["Embedding"] = embeddings
 
     return data
@@ -114,9 +120,9 @@ def insert_data_into_milvus(collection, dataWithEmbeddings):
     collection.flush()
     collection.load()
     
-def search_similar_text(collection, text, tokenizer, model, top_k=5):
+def search_similar_text(collection, text, tokenizer, model, top_k, device):
     # Generate the embedding for the input text
-    embedding = generate_embedding(text, tokenizer, model)
+    embedding = generate_embedding(text, tokenizer, model, device)
     
     # Perform a search on the collection
     search_params = {"metric_type": "L2", "params": {"nprobe": 10}}
@@ -142,7 +148,7 @@ def generate_response(prompt, model, tokenizer, device):
     with torch.no_grad():
         outputs = model.generate(
             inputs.input_ids,
-            max_length=150,
+            max_length=12800,
             num_return_sequences=1,
             pad_token_id=tokenizer.eos_token_id,
             temperature=0.7,
@@ -157,18 +163,16 @@ connect_to_milvus()
 drop_everything() # !!! WARNING !!!
 laws_collection = create_collection()
 
-model, tokenizer = load_model("meta-llama/Meta-Llama-3.1-8B-Instruct")#("BAAI/bge-m3")
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-#model.to(device)
-#model.eval()
+model, tokenizer = load_model("meta-llama/Meta-Llama-3.1-8B-Instruct", device)#("BAAI/bge-m3")
 
-dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), model, tokenizer)
+dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), model, tokenizer, device)
 insert_data_into_milvus(laws_collection, dataWithEmbeddings)
 
 while True:
     user_prompt = "Citami un articolo"#input("Insert a prompt: ")
     
-    search_results = search_similar_text(laws_collection, user_prompt, tokenizer, model)
+    search_results = search_similar_text(laws_collection, user_prompt, tokenizer, model, 5, device)
     print(search_results)
 
     # Combine retrieved documents into a single context
