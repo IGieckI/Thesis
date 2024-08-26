@@ -35,11 +35,13 @@ models = {
     #    'model_name': 'Equall/Saul-7B-Instruct-v1',
     #    'context_window': 1024,
     #    'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n"
+    #    'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoAWQForCausalLM.from_pretrained(model_name, device_map="cuda")
     #},
     #"Falcon-7B": {
     #    'model_name': 'tiiuae/falcon-7b-instruct',
     #    'context_window': 512,
     #    'prompt_function': lambda system_prompt, user_prompt: f"User: {user_prompt}\nAssistant:{system_prompt}"
+    #    'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda")
     #}
 }
 
@@ -76,7 +78,7 @@ for model_name, model_data in models.items():
         
         input_text = prompt_function(
             f"You are an expert in the field of law, and you are gonna reply to the following quiz. You have to choose the correct answer among the three options. Just use the question and the answers as context. This is the referenced article in the question: "
-            + f"{ref['Reference']}",
+            + f"{ref['Law text']}",
             row['Question'] + row['Answer 1'] + row['Answer 2'] + row['Answer 3']
         )
 
