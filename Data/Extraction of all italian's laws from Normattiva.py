@@ -2,22 +2,19 @@ import re
 import os
 import time
 import json
-import PyPDF2
-import pypandoc
+
 import pandas as pd
 from tqdm import tqdm
 import lxml.etree as ET
 
-
-from langchain_openai import AzureChatOpenAI
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 isLinux = True
 default_linux_path = os.getcwd().replace("/Data", "/Documents/Downloaded") if "/Data" in os.getcwd() else os.getcwd() + "/Documents/Downloaded"
@@ -25,70 +22,43 @@ default_windows_path = os.getcwd().replace("\\Data", "\\Documents\\Downloaded") 
 default_path = default_linux_path if isLinux else default_windows_path
 
 DEFAULT_SAVE_DIR = default_path.replace("/Downloaded", "/Generated") if isLinux else default_path.replace("\\Downloaded", "\\Generated")
-CHROME_DRIVERS_PATH = "/chromedriver-linux64/chromedriver" if isLinux else "C:\\Users\\giaco\\Downloads\\chromedriver-win64\\chromedriver.exe"
-
+CHROME_DRIVERS_PATH = "/home/giacomo.antonelli/work/chromedriver-linux64/chromedriver" if isLinux else "C:\\Users\\giaco\\Downloads\\chromedriver-win64\\chromedriver.exe"
+# WSL: /home/giacomo/chromedriver-linux64/chromedriver
+# Maggioli: /home/giacomo.antonelli/work/chromedriver-linux64/chromedriver
 ALL_LAWS_CSV = DEFAULT_SAVE_DIR + ("/All laws extracted.csv" if isLinux else "\\All laws extracted.csv")
-ALL_LAWS_SCRAPED_JSON = DEFAULT_SAVE_DIR + ("/All laws.json" if isLinux else "\\All laws.json")
+SCRAPED_PAGES_JSON = DEFAULT_SAVE_DIR + ("/Scraped pages.json" if isLinux else "\\Scraped pages.json")
 
 # Utility functions and constants
-def write_to_file(filename, content):
-    with open(filename, 'w+') as f:
-        f.write(content)
+def write_to_json_file(filename, data):
+    with open(filename, 'w') as f:
+        json.dump(data, f, indent=4)
+        
+def read_from_json_file(filename):
+    f = open(filename, "r").read()
+    return json.loads(f)
 
-def read_from_file(filename):
-    with open(filename, 'r') as f:
-        return f.read()
-    
 def save_df_to_csv(df, filename):
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, index=False)   
 
-# Different kind of text extraction from each type of file
-def extract_text_from_pdf(pdf_path):
-    text = ""
-    with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfReader(file)
-        for page_num in range(len(reader.pages)):
-            page = reader.pages[page_num]
-            text += page.extract_text()
-    return text    
+def extractCommaNumber(articleElement):
+    articleElement = articleElement.strip()
+    if "art." in articleElement:
+        return articleElement.split(" ")[1]
+    return articleElement
 
-def extract_text_from_xml(xml_path):
-    tree = ET.parse(xml_path)
-    root = tree.getroot()
-    return ET.tostring(root, encoding='unicode', method='text')
-
-def extract_text_from_rtf(rtf_path):
-    return pypandoc.convert_file(rtf_path, 'plain', format='rtf')
-
-
-def split_text(text, pattern):
-    parts = re.split(pattern, text, flags=re.MULTILINE)
-    
-    parts = [part for part in parts if part]
-    
-    if not re.match(pattern, parts[0]):
-        parts = parts[1:]
-    
-    return parts
-
-def split_text(text, max_chunk_size=7000, chunk_overlap=100):
-    text_splitter = RecursiveCharacterTextSplitter(separators=[
-        "\n\n",
-        "\n",
-        ".",
-    ],
-    chunk_size=max_chunk_size,
-    chunk_overlap=chunk_overlap)
-    
-    return text_splitter.split_text(text)
+def extractArticleNumber(articleElement):
+    match = re.search(r'n\..*?(\d+)', articleElement)
+    if match:
+        return int(match.group(1))
+    return None
 
 def clearCommaContent(content):
     if "<" not in content:
         return content
     
     # Check for comma class tags
-    match =  re.search(r'<span class="art_text_in_comma">(.*?)</span>', comma_content, re.DOTALL)
-    comma_content = match.group(1) if match else comma_content
+    match = re.search(r'<span class="art_text_in_comma">(.*?)</span>', content, re.DOTALL)
+    comma_content = match.group(1) if match else content
     comma_content = re.sub(r"<div class=\"ins-akn\" eid=\"ins_\d+\">\(\(", "", comma_content, flags=re.DOTALL)
     comma_content = re.sub(r"\)\)</div>", "", comma_content, flags=re.DOTALL)
     comma_content = re.sub(r"\n", "", comma_content, flags=re.DOTALL)
@@ -132,13 +102,12 @@ class NormattivaAllLawsScraper:
     
     # Get the originario version of the law
     def fill_field(self, field_id, value):
-        input_field = self.driver.find_element(By.ID, field_id)
+        input_field = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, field_id)))
         input_field.clear()
         input_field.send_keys(value)
     
     def get_years(self):
         years = self.driver.find_elements(By.CLASS_NAME, "btn-secondary")
-        time.sleep(1)
         return years
         
     # Get the text of a specific article
@@ -155,8 +124,8 @@ class NormattivaAllLawsScraper:
         except:
             return articles_list
                 
-        for i, article in enumerate(articles[1:]):
-            if article.text.strip() != "" and article.text[0].isdigit():                
+        for i, article in enumerate(articles):
+            if article.text.strip() != "" and (article.text.strip().isdigit() or "art." in article.text):
                 try:
                     article.click()                    
                     time.sleep(1)
@@ -166,13 +135,21 @@ class NormattivaAllLawsScraper:
                 except:
                     continue
                 
+                pre_article = ""
+                try:
+                    pre_article = self.driver.find_element(By.CLASS_NAME, "article-pre-comma-text-akn")
+                    pre_article = pre_article.text
+                except:
+                    pass
+                                
                 if len(commas) == 0:
                     continue
                 
+                comma_number = extractCommaNumber(article.text)
                 firstTime = True                
                 for comma in commas:
                     if firstTime:
-                        time.sleep(1)
+                        time.sleep(0.5)
                         firstTime = False
                     
                     # Check if the content contains any multivigenza change
@@ -189,17 +166,15 @@ class NormattivaAllLawsScraper:
                         comma_number = comma.find_element(By.CLASS_NAME, "comma-num-akn").text.strip()
                     except:
                         continue
-                    comma_content_element = comma.text#find_element(By.CLASS_NAME, "art_text_in_comma")
+                    comma_content_element = comma.text
 
                     # Clear the output
+                    comma_content_element = pre_article + comma_content_element
+                    pre_article = ""
                     comma_content = clearCommaContent(comma_content_element)
-                    
-                    print(article_title, comma_number, comma_content)
-                    
-                    articles_list.append({ "Source": "All laws",
-                                            "Article": article_title,
-                                            "Comma number": comma_number,
-                                            "Comma content": comma_content.strip()}) # Numeration not working in case of -bis... extract
+                                        
+                    articles_list.append({ "article_source": "All laws",
+                                            "article_text": comma_content.strip()})
 
         return articles_list
 
@@ -212,16 +187,22 @@ class NormattivaAllLawsScraper:
         self.driver.quit()
 
 # Check if the laws have already been scraped
-scraped_pages_set = set()
-if os.path.exists(ALL_LAWS_SCRAPED_JSON):
-    scraped_pages = read_from_file(ALL_LAWS_SCRAPED_JSON)
+if os.path.exists(SCRAPED_PAGES_JSON):
+    scraped_pages = read_from_json_file(SCRAPED_PAGES_JSON)
+    scraped_pages = json.loads(scraped_pages)
+    print(type(scraped_pages))
+    print(len(scraped_pages))
+else:
+    scraped_pages = []
     
-   # Assuming the JSON is an array of values
-    scraped_pages_set = set(scraped_pages)
+if os.path.exists(ALL_LAWS_CSV):
+    data = pd.read_csv(ALL_LAWS_CSV)
+else:
+    data = pd.DataFrame()
 
 scraper = NormattivaAllLawsScraper(CHROME_DRIVERS_PATH, headless=True)
-data = []
 
+#1861, 2025
 for year in range(1861, 2025):
     scraper.driver.get("https://www.normattiva.it/ricerca/avanzata")
     scraper.fill_field("annoProvvedimento", year)
@@ -234,39 +215,53 @@ for year in range(1861, 2025):
     
     while validPage:
         # Collect all law detail URLs on the current page
-            laws = scraper.driver.find_elements(By.CSS_SELECTOR, "[title^='Dettaglio atto']")
-            
-            for law in laws:
-                law_url = law.get_attribute('href')
-                if law_url:
-                    law_urls.append(law_url)
-            
-            # Try a new page of laws
-            curr_page += 1
-            pages_link = scraper.driver.find_elements(By.CLASS_NAME, "page-link")
-            validPage = False
-            for page in pages_link:
-                if page.text == str(curr_page):
-                    validPage = True
-                    page.click()
-                    time.sleep(0.5)
-                    break
+        laws = scraper.driver.find_elements(By.CSS_SELECTOR, "[title^='Dettaglio atto']")
+        
+        for law in laws:
+            law_url = law.get_attribute('href')
+            if law_url:
+                law_urls.append(law_url)
+        
+        # Try a new page of laws
+        curr_page += 1
+        pages_link = scraper.driver.find_elements(By.CLASS_NAME, "page-link")
+        validPage = False
+        for page in pages_link:
+            if page.text == str(curr_page):
+                validPage = True
+                page.click()
+                time.sleep(0.5)
+                break
     
     # Visit each law's detail page and scrape the articles
     for i, url in enumerate(law_urls):
-        if f"{year}/{i}" in scraped_pages_set:
+        if f"{year}/{i}" in scraped_pages:
             print(f"Skipping {year}/{i}")
             continue
         scraper.driver.get(url)
         articles = scraper.get_articles()
-        print(articles)
-        if articles:
-            data.append(articles)
-            
-            df_all_laws = pd.DataFrame(data)
-            save_df_to_csv(df_all_laws, ALL_LAWS_CSV)
-        
-        scraped_pages_set.add(f"{year}/{i}")
-        write_to_file(ALL_LAWS_SCRAPED_JSON, json.dumps(list(scraped_pages_set)))        
 
-df_all_laws.head()
+        # Get law's number
+        page_title =  scraper.driver.title
+        print(page_title, " -> ", end="")
+        law_number = extractArticleNumber(page_title)
+        print(law_number)
+        
+        # Add year to all articles
+        for article in articles:
+            article['year'] = year
+            article['article_number'] = law_number
+            print(article)
+
+        if articles:
+            df_articles = pd.DataFrame(articles)
+            data = pd.concat([data, df_articles], ignore_index=True)
+            
+            save_df_to_csv(data, ALL_LAWS_CSV)
+        
+        scraped_pages.append(f"{year}/{i}")
+        write_to_json_file(SCRAPED_PAGES_JSON, json.dumps(scraped_pages))
+
+scraper.close()
+
+data.head()

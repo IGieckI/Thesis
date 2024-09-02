@@ -1,0 +1,7 @@
+Just LLM knowledge:
+LLama 3.1 8B: 0.5263
+Saul: 0.3947
+
+Just cited law:
+LLama 3.1 8B: 0.6052
+Saul: 0.4210
