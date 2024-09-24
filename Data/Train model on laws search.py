@@ -30,7 +30,9 @@ TRAINING_BATCH_SIZE = 32
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 TRAIN_JSON = DEFAULT_SAVE_DIR + "train.json"
 VAL_JSON = DEFAULT_SAVE_DIR + "val.json"
-EMB_WEIGHTS = DEFAULT_SAVE_DIR + "embedding_weights_H.pt"
+#EMB_WEIGHTS = DEFAULT_SAVE_DIR + "embedding_weights_H.pt"
+TRAINED_MODEL_DIR = default_path.replace("/Downloaded", "/TrainedModel") if isLinux else default_path.replace("\\Downloaded", "\\TrainedModel")
+TRAINED_TOKENIZER_DIR = default_path.replace("/Downloaded", "/TrainedTokenizer") if isLinux else default_path.replace("\\Downloaded", "\\TrainedTokenizer")
 
 # Load retrieval model
 retrieval_model = AutoModel.from_pretrained('BAAI/bge-m3').to(DEVICE)
@@ -132,7 +134,7 @@ if not client.list_indexes(QUIZZES_COLLECTION_NAME):
 """
 quizzes_df = pd.read_csv(QUEST_CSV) #quiz_id,question,answer_1,answer_2,answer_3
 laws = pd.read_csv(TMP_ALL_LAWS_CSV) #law_source,law_text,law_number,law_year
-references = pd.read_csv(REF_MERG) #Source,Comma,Reference,Question id,Question plh,Law text
+references = pd.read_csv(REF_MERG) #Source,Comma,Reference,Question id,Question plh,Law 
 
 quizzes_df["quiz_id"] = range(len(quizzes_df))
 
@@ -272,9 +274,6 @@ print(len(val_losses))
 with open(VAL_JSON, "w") as f:
     f.write(json.dumps(val_losses))
 
-torch.save(retrieval_model.embeddings.word_embeddings.weight.H, EMB_WEIGHTS)
-
-weights = torch.load(EMB_WEIGHTS)
-old_state_dict = retrieval_model.embeddings.state_dict()
-old_state_dict['word_embeddings.weight'] = weights.T
-retrieval_model.embeddings.load_state_dict(old_state_dict)
+#torch.save(retrieval_model.embeddings.word_embeddings.weight.H, EMB_WEIGHTS)
+retrieval_model.save_pretrained(TRAINED_MODEL_DIR)
+tokenizer.save_pretrained(TRAINED_TOKENIZER_DIR)

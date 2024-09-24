@@ -23,12 +23,20 @@ QUIZ_CSV = os.path.join(DEFAULT_SAVE_DIR, 'quiz_merged.csv')
 REF_CSV = os.path.join(DEFAULT_SAVE_DIR, 'references_merged.csv')
 
 models = {
-    "Saul": {
-        'model_name': 'Equall/Saul-7B-Instruct-v1',
-        'context_window': 1024,
-        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
-        'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoAWQForCausalLM.from_pretrained(model_name, device_map="cuda")
+    "Meta-Llama 8B": {
+        'model_name': 'meta-llama/Meta-Llama-3.1-8B-Instruct',
+        'context_window': 8000,
+        'prompt_function': lambda system_prompt, user_prompt: f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>
+{user_prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>""",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else LlamaForCausalLM.from_pretrained(model_name, device_map="cuda")
     },
+    #"Saul": {
+    #    'model_name': 'Equall/Saul-7B-Instruct-v1',
+    #    'context_window': 1024,
+    #    'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+    #    'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoAWQForCausalLM.from_pretrained(model_name, device_map="cuda")
+    #},
     #"Falcon-7B": {
     #    'model_name': 'tiiuae/falcon-7b-instruct',
     #    'context_window': 512,
@@ -68,19 +76,20 @@ for model_name, model_data in models.items():
     batch_size = 16
     inputs = []
     questions_answers = []
-
+#law_source,law_number,quiz_id,question_plh,law_text,year
+#quiz_id,question,answer_1,answer_2,answer_3
     for index, row in df_quiz.iterrows():
-        ref = df_ref[df_ref['Question id'] == row['Index']]
-        if ref.empty or pd.isna(ref.iloc[0]['Law text']):
+        ref = df_ref[df_ref['quiz_id'] == row['quiz_id']]
+        if ref.empty or pd.isna(ref.iloc[0]['law_text']):
             continue
         
         input_text = prompt_function(
             "You are an expert in the field of law. Answer the following quiz. Choose the correct answer among the three options.",
-            row['Question'] + "\n" + row['Answer 1'] + "\n" + row['Answer 2'] + "\n" + row['Answer 3'] + "\nJust answer the question, don't add anything else!"
+            row['question'] + "\n" + row['answer_1'] + "\n" + row['answer_2'] + "\n" + row['answer_3'] + "\nJust answer the question, don't add anything else!"
         )
 
         inputs.append(input_text)
-        questions_answers.append([row['Answer 1'], row['Answer 2'], row['Answer 3']])
+        questions_answers.append([row['answer_1'], row['answer_2'], row['answer_3']])
 
         # Process batch when the size reaches batch_size
         if len(inputs) == batch_size:
