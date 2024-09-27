@@ -175,12 +175,13 @@ patience_limit = 2
 accumulation_count = 0
 accumulation_steps = 8
 
-for epoch in range(50):
+for epoch in range(20):
     print(f"Epoch {epoch}")
     retrieval_model.train()
     # Training loop
     epoch_losses = []
-    for query_input_ids, query_attention_masks, passage_input_ids, passage_attention_masks, batch_labels in train_dataloader:
+    iteration = 0
+    for query_input_ids, query_attention_masks, passage_input_ids, passage_attention_masks, batch_labels in train_dataloader:        
         # Move data to GPU
         (query_input_ids,
           query_attention_masks,
@@ -193,7 +194,12 @@ for epoch in range(50):
                         batch_labels.to(DEVICE))
 
         optimizer.zero_grad()
+        print("-" * 50)
+        print(f"Epoch {epoch} Iteration {iteration}")
         print(f"Memory allocated: {torch.cuda.memory_allocated() / 1024 ** 2} MB")
+        print(f"Torch memory allocated: {torch.cuda.memory_allocated() / 1024 ** 2}")
+        print(f"Torch memory allocated: {torch.cuda.memory_reserved() / 1024 ** 2}")
+        print("-" * 50)
         # Forward pass
         query_outputs = retrieval_model(query_input_ids, attention_mask=query_attention_masks)
         passage_outputs = retrieval_model(passage_input_ids, attention_mask=passage_attention_masks)
@@ -203,8 +209,13 @@ for epoch in range(50):
 
         loss = criterion(q_logits, p_logits, batch_labels)
 
-        loss = loss / accumulation_steps # Scale the loss
-        loss.backward() # Propagate gradients
+        loss = loss / accumulation_steps
+        
+        try:
+            loss.backward()
+        except Exception as e:
+            print(e)
+            break
 
         epoch_losses.append(loss.item())
         accumulation_count += 1
@@ -216,7 +227,8 @@ for epoch in range(50):
 
         gc.collect()
         del query_outputs, passage_outputs
-        torch.cuda.empty_cache()
+        iteration+=1
+    torch.cuda.empty_cache()
 
     mean_loss = sum(epoch_losses) / len(epoch_losses) * accumulation_steps
     train_losses.append(mean_loss)

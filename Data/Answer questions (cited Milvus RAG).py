@@ -123,7 +123,7 @@ for model_name, model_data in models.items():
 
         # Process batch when the size reaches batch_size
         if len(inputs) == batch_size:
-            outputs = nlp(inputs, max_new_tokens=100)
+            outputs = nlp(inputs, max_new_tokens=64)
 
             for output, question_answers in zip(outputs, questions_answers):
                 ans = output[0]['generated_text'].strip()

@@ -1,4 +1,5 @@
 import difflib
+import re
 import os
 import torch
 import pandas as pd
@@ -49,7 +50,8 @@ models = {
 df_quiz = pd.read_csv(QUIZ_CSV)
 df_ref = pd.read_csv(REF_CSV)
 
-df_quiz = df_quiz[:300]
+df_quiz = df_quiz
+print(f"Quiz length: {len(df_quiz)}")
 
 for model_name, model_data in models.items():
     model_id = model_data['model_name']
@@ -71,21 +73,26 @@ for model_name, model_data in models.items():
 
     nlp = pipeline("text-generation", model=model, tokenizer=tokenizer)
 
-    correct_count = 0
+    correct_answers = 0
     attempted_questions = 0
     batch_size = 16
     inputs = []
     questions_answers = []
-#law_source,law_number,quiz_id,question_plh,law_text,year
-#quiz_id,question,answer_1,answer_2,answer_3
+
     for index, row in df_quiz.iterrows():
         ref = df_ref[df_ref['quiz_id'] == row['quiz_id']]
         if ref.empty or pd.isna(ref.iloc[0]['law_text']):
-            continue
-        
+            continue        
+               
         input_text = prompt_function(
-            "You are an expert in the field of law. Answer the following quiz. Choose the correct answer among the three options.",
-            row['question'] + "\n" + row['answer_1'] + "\n" + row['answer_2'] + "\n" + row['answer_3'] + "\nJust answer the question, don't add anything else!"
+            "You are an expert in the field of law. Choose the correct answer to the question below:",
+            """Question: {question}
+            Options:
+            1. {answer_1}
+            2. {answer_2}
+            3. {answer_3}
+            Respond with the number of the correct answer (1, 2, or 3) in this format "La risposta corretta è (numero)".
+            """.format(question=row['question'], answer_1=row['answer_1'], answer_2=row['answer_2'], answer_3=row['answer_3'])
         )
 
         inputs.append(input_text)
@@ -99,14 +106,23 @@ for model_name, model_data in models.items():
                 ans = output[0]['generated_text'].strip()
                 ans = ans.split("<|start_header_id|>assistant<|end_header_id|>")[-1]
 
-                most_similar = difflib.get_close_matches(ans, question_answers, n=1, cutoff=0)
+                # Extract the model's chosen answer with regex
+                matches = re.findall(r'risposta corretta\s*è\s*(\d+)', ans, re.DOTALL)
 
-                if most_similar and most_similar[0] == question_answers[0]:
-                    correct_count += 1
+                if len(matches) > 0:
+                    model_answer = matches[0]
                 else:
-                    print(f"Model answer: {ans}, Most similar: {most_similar}, Correct answer: {question_answers[0]}")
-                    print(f"WRONG")
+                    print("No answer found.")
+                    continue
+
                 attempted_questions += 1
+                if model_answer == "1":
+                    print(f"Correct Answer")
+                    correct_answers += 1
+                else:
+                    print("The model's answer was incorrect.")
+                
+                print("-" * 40)
 
             inputs = []
             questions_answers = []
@@ -118,17 +134,22 @@ for model_name, model_data in models.items():
                 ans = output[0]['generated_text'].strip()
                 ans = ans.split("<|start_header_id|>assistant<|end_header_id|>")[-1]
 
-                most_similar = difflib.get_close_matches(ans, question_answers, n=1, cutoff=0)
+                # Extract the model's chosen answer with regex
+                matches = re.findall(r'risposta corretta\s*è\s*(\d+)', ans, re.DOTALL)
 
-                if most_similar and most_similar[0] == question_answers[0]:
-                    correct_count += 1
+                if len(matches) > 0:
+                    model_answer = matches[0]
                 else:
-                    print(f"Model answer: {ans}, Most similar: {most_similar}, Correct answer: {question_answers[0]}")
-                    print(f"WRONG")
-                attempted_questions += 1
+                    print("No answer found.")
+                    continue
 
-    if attempted_questions > 0:
-        accuracy = correct_count / attempted_questions
-        print(f'Accuracy of {model_name}: {accuracy} ({correct_count}/{attempted_questions})')
-    else:
-        print(f'No questions were attempted for model: {model_name}')
+                attempted_questions += 1
+                if model_answer == "1":
+                    print(f"Correct Answer")
+                    correct_answers += 1
+                else:
+                    print("The model's answer was incorrect.")
+                
+                print("-" * 40)
+
+    print(f"Model answered {correct_answers} / {attempted_questions} questions correctly: {correct_answers / attempted_questions * 100:.2f}%")

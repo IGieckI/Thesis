@@ -1,0 +1,8 @@
+DONE Estrazione dai quiz di tutti i dipi di leggi non fatti
+DONE Creazione di un ref dataframe con tutti i dipi di leggi non fatti
+DONE(memory exception) Riaddestramento del modello basato anche sui nuovi ref
+Tokenizzazione con lo stesso modello di tutte le leggi nuove e quelle regionali 
+Inserimento di tutte queste nuove leggi + quelle regionali all'interno di milvus IN DUE COLLEZIONI DIFFERENTI
+Implementare la sostituzioni delle leggi dei quiz con leggi regionali
+
+Prova a rifare l'addestramento tenendo freezati tutti i layer tranne il primo

@@ -5,3 +5,9 @@ Saul: 0.3947
 Just cited law:
 LLama 3.1 8B: 0.6052
 Saul: 0.4210
+
+FINAL TESTS WITH LLAMA 3.1 (dataset with 1120 questions):
+Just LLM knowledge: 324 / 565 questions correctly: 57.35% (23%)
+LLM given the correct reference: 447 / 557 questions correctly: 80.25% (39.91%)
+Milvus RAG without trained model: 
+Milvus RAG with trained model: 610 / 1106 questions correctly: 55.15% (54.46%)
