@@ -2,7 +2,7 @@ import os
 import re
 import torch
 import pandas as pd
-from transformers import AutoTokenizer, pipeline, LlamaForCausalLM, BitsAndBytesConfig, AutoModelForCausalLM
+from transformers import AutoTokenizer, pipeline, LlamaForCausalLM, BitsAndBytesConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration, AutoModel
 import difflib
 
 # Determine default paths based on OS
@@ -16,28 +16,161 @@ LAWS_CSV = os.path.join(DEFAULT_SAVE_DIR, 'laws.csv')
 QUIZ_CSV = os.path.join(DEFAULT_SAVE_DIR, 'quiz_merged.csv')
 REF_CSV = os.path.join(DEFAULT_SAVE_DIR, 'references_merged.csv')
 
+"""
+Lista modelli piccoli:
+google/mt5-large
+google/mt5-base
+facebook/mbart-large-50
+gsarti/it5-large
+gsarti/it5-base
+ 
+Lista modelli grandi:
+mistralai/Mistral-7B-Instruct-v0.1
+meta-llama/Llama-3.1-8B-Instruct
+Equall/Saul-7B-Instruct-v1
+microsoft/Phi-3-small-8k-instruct
+google/gemma-2-9b-it
+"""
+
 models = {
-    "Meta-Llama 8B": {
-        'model_name': 'meta-llama/Meta-Llama-3.1-8B-Instruct',
-        'context_window': 8000,
-        'prompt_function': lambda system_prompt, user_prompt: f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
-{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>
-{user_prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>""",
-        'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else LlamaForCausalLM.from_pretrained(model_name, device_map="cuda")
-    },
-    #"Saul": {
+    # Large Models
+    #"Meta-Llama 3.1 8B": {
+    #    'model_name': 'meta-llama/Llama-3.1-8B-Instruct',
+    #    'context_window': 8000,
+    #    'prompt_function': lambda system_prompt, user_prompt: f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>
+    #{system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>
+    #{user_prompt}<|eot_id|><|start_header_id|>assistant<|end_header_id|>""",
+    #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else LlamaForCausalLM.from_pretrained(model_name, device_map="cuda"),
+    #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+    #    'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    #},
+    #"Saul 7B": {
     #    'model_name': 'Equall/Saul-7B-Instruct-v1',
     #    'context_window': 1024,
     #    'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
-    #    'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoAWQForCausalLM.from_pretrained(model_name, device_map="cuda")
+    #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda"),
+    #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+    #    'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
     #},
-    #"Falcon-7B": {
-    #    'model_name': 'tiiuae/falcon-7b-instruct',
-    #    'context_window': 512,
-    #    'prompt_function': lambda system_prompt, user_prompt: f"User: {user_prompt}\nAssistant:{system_prompt}",
-    #    'model_load_function': lambda model_name, quant_bab = None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda")
-    #}
+    #"Mistral 7B": {
+    #    'model_name': 'mistralai/Mistral-7B-v0.1',
+    #    'context_window': 8192,
+    #    'prompt_function': lambda system_prompt, user_prompt: f"{system_prompt}\nUser: {user_prompt}\nAssistant: ",
+    #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda"),
+    #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+    #    'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    #},
+    #"Phi-3 8k": {
+    #    'model_name': 'microsoft/Phi-3-small-8k-instruct',
+    #    'context_window': 8192,
+    #    'prompt_function': lambda system_prompt, user_prompt: f"<|endoftext|><|system|>{system_prompt}<|end|><|user|>{user_prompt}<|end|><|assistant|>",
+    #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda", trust_remote_code=True) if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda", trust_remote_code=True),
+    #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+    #    'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    #},
+    #"Gemma-2 9B": {
+    #    'model_name': 'google/gemma-2-9b-it',
+    #    'context_window': 8192,
+    #    'prompt_function': lambda system_prompt, user_prompt: f"<start_of_turn>user\n{system_prompt}{user_prompt}<end_of_turn>\n<start_of_turn>model\n",
+    #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda"),
+    #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+    #    'text_generation': lambda model, tokenizer, text: generate_text_default_transformers(model, tokenizer, text)
+    #},
+    
+    # Medium Models
+    "Google mt5-base": {
+        'model_name': 'google/mt5-base', # No prompt
+        'context_window': 1024,
+        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModel.from_pretrained(model_name, device_map="cuda"),#T5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),#T5Tokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: generate_text_googlemt_model(model, tokenizer, text)
+    },
+    "Google mt5-large": {
+        'model_name': 'google/mt5-large', # No prompt
+        'context_window': 1024,
+        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModel.from_pretrained(model_name, device_map="cuda"),#T5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),#T5Tokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: generate_text_googlemt_model(model, tokenizer, text)
+    },
+    "it5-large": {
+        'model_name': 'gsarti/it5-large',
+        'context_window': 1024,
+        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModelForSeq2SeqLM.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    },
+    "it5-base": {
+        'model_name': 'gsarti/it5-base',
+        'context_window': 1024,
+        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModelForSeq2SeqLM.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    },
+    "mbart-large-50": {
+        'model_name': 'facebook/mbart-large-50', # No prompt
+        'context_window': 1024,
+        'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
+        'model_load_function': lambda model_name, quant_bab=None: AutoModelForSeq2SeqLM.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
+    }
 }
+
+def generate_text_default_transformers(model, tokenizer, text):
+    if not type(text) == list:
+        text = [text]
+    
+    outputs = []    
+    nlp = pipeline("text-generation", model=model, tokenizer=tokenizer)
+    outputs = nlp(text, max_new_tokens=64)
+
+    for i, it in enumerate(outputs):
+        outputs[i] = outputs[i][0]['generated_text']
+        outputs[i] = extract_reply(outputs[i])
+
+    return outputs
+
+def generate_text_googlemt_model(model, tokenizer, text):
+    if not isinstance(text, list):
+        text = [text]
+    
+    outputs = []
+    
+    model.eval()
+    
+    device = next(model.parameters()).device
+
+    for t in text:
+        inputs = tokenizer(t, return_tensors='pt', padding=True, truncation=True).to(device)
+
+        input_ids = inputs['input_ids']
+        
+        decoder_input_ids = tokenizer.encode(tokenizer.eos_token, return_tensors='pt').to(device)  # Move to the same device
+        
+        with torch.no_grad():
+            output = model(input_ids=input_ids, decoder_input_ids=decoder_input_ids)
+        
+        reply = extract_reply(output)
+
+        outputs.append(reply)
+    
+    return outputs
+
+def extract_reply(ans):
+    if "<start_of_turn>model\n" in ans:
+        ans = ans.split("<start_of_turn>model\n")[-1]
+    elif "<|start_header_id|>assistant<|end_header_id|>" in ans:
+        ans = ans.split("<|start_header_id|>assistant<|end_header_id|>")[-1]
+    else:
+        ans = ans.split("|<assistant>|")[-1]
+    ans = ans.replace("\n", "")
+    ans = ans.strip()
+
+    return ans
 
 # Load CSV files
 df_quiz = pd.read_csv(QUIZ_CSV)
@@ -50,6 +183,8 @@ for model_name, model_data in models.items():
     context_window = model_data['context_window']
     prompt_function = model_data['prompt_function']
     load_model_function = model_data['model_load_function']
+    load_tokenizer_function = model_data['tokenizer_load_function']
+    text_generation = model_data['text_generation']
 
     print(f'Running model: {model_name}')
     
@@ -60,12 +195,9 @@ for model_name, model_data in models.items():
         bnb_4bit_compute_dtype=torch.bfloat16,
     )
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    tokenizer = load_tokenizer_function(model_id)
     model = load_model_function(model_id, bnb_config)
 
-    nlp = pipeline("text-generation", model=model, tokenizer=tokenizer)
-
-    cont = 0 # DELETE
     correct_count = 0
     attempted_questions = 0
     no_answer_found_count = 0
@@ -76,21 +208,21 @@ for model_name, model_data in models.items():
 
     for index, row in df_quiz.iterrows():
         ref = df_ref[df_ref['quiz_id'] == row['quiz_id']]
-        if ref.empty or pd.isna(ref.iloc[0]['law_text']):
+        if ref.empty or pd.isna(ref.iloc[0]['article_text']):
             no_references_count += 1
             continue
-        ref_text = ref.iloc[0]['law_text']
+        ref_text = ref.iloc[0]['article_text']
 
         input_text = prompt_function(
-            """You are an expert in the field of law. Based on the following article, choose the correct answer to the question below:
-            Article: {context}""".format(context=ref_text),
-            """Question: {question}
+            f"""You are an expert in the field of law. Based on the following article, choose the correct answer to the question below:
+            Article: {ref_text}""",
+            f"""Question: {row['question']}
             Options:
-            1. {answer_1}
-            2. {answer_2}
-            3. {answer_3}
+            1. {row['answer_1']}
+            2. {row['answer_2']}
+            3. {row['answer_3']}
             Answer with the number of the correct answer (1, 2, or 3) in this format "La risposta corretta è (numero)".
-            """.format(question=row['question'], answer_1=row['answer_1'], answer_2=row['answer_2'], answer_3=row['answer_3'])
+            """
         )
 
         inputs.append(input_text)
@@ -98,15 +230,12 @@ for model_name, model_data in models.items():
 
         # Process batch when the size reaches batch_size
         if len(inputs) == batch_size:
-            outputs = nlp(inputs, max_new_tokens=50)
-
+            outputs = text_generation(model, tokenizer, inputs)
             for output, question_answers in zip(outputs, questions_answers):
-                cont += 1
-                ans = output[0]['generated_text'].strip()
-                ans = ans.split("<|start_header_id|>assistant<|end_header_id|>")[-1]
-                print(ans)
+                output = extract_reply(output)
+                
                 # Extract the model's chosen answer with regex
-                matches = re.findall(r'risposta corretta\s*è\s*(\d+)', ans, re.DOTALL)
+                matches = re.findall(r'risposta corretta\s*è\s*(\d+)', output, re.DOTALL)
 
                 if len(matches) > 0:
                     model_answer = matches[0]
@@ -131,15 +260,12 @@ for model_name, model_data in models.items():
 
     # Process any remaining inputs
     if inputs:
-        outputs = nlp(inputs, max_new_tokens=64)
+        outputs = text_generation(model, tokenizer, inputs)
         for output, question_answers in zip(outputs, questions_answers):
-            cont += 1
+            output = extract_reply(output)
             
-            ans = output[0]['generated_text'].strip()
-            ans = ans.split("<|start_header_id|>assistant<|end_header_id|>")[-1]
-
             # Extract the model's chosen answer with regex
-            matches = re.findall(r'risposta corretta\s*è\s*(\d+)', ans, re.DOTALL)
+            matches = re.findall(r'risposta corretta\s*è\s*(\d+)', output, re.DOTALL)
 
             if len(matches) > 0:
                 model_answer = matches[0]
@@ -157,8 +283,16 @@ for model_name, model_data in models.items():
                 print("The model's answer was incorrect.")
             
             print("-" * 40)
-                
-    print(f"Model answered {correct_count} / {attempted_questions} questions correctly: {correct_count / attempted_questions * 100:.2f}%")
+    
+    print(f"Model {model_name} answered {correct_count} / {attempted_questions} questions correctly: {correct_count / attempted_questions * 100:.2f}%")
     print(f"Questions without references: {no_references_count}")
     print(f"Questions without answers: {no_answer_found_count}")
     print(f"Total questions attempted: {attempted_questions}")
+
+    # Print the prints on a file too
+    with open('output.txt', 'a') as fle:
+        fle.write(f"Model {model_name} answered {correct_count} / {attempted_questions} questions correctly: {correct_count / attempted_questions * 100:.2f}%\n")
+        fle.write(f"Questions without references: {no_references_count}\n")
+        fle.write(f"Questions without answers: {no_answer_found_count}\n")
+        fle.write(f"Total questions attempted: {attempted_questions}\n")
+        fle.write("------------------------\n")

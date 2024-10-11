@@ -1,0 +1,20 @@
+Model Saul 7B answered 3 / 3 questions correctly: 100.00%
+Questions without references: 475
+Questions without answers: 642
+Total questions attempted: 3
+------------------------
+Model Mistral 7B answered 184 / 314 questions correctly: 58.60%
+Questions without references: 475
+Questions without answers: 331
+Total questions attempted: 314
+------------------------
+Model Phi-3 8k answered 470 / 597 questions correctly: 78.73%
+Questions without references: 475
+Questions without answers: 48
+Total questions attempted: 597
+------------------------
+Model Gemma-2 9B answered 503 / 598 questions correctly: 84.11%
+Questions without references: 475
+Questions without answers: 47
+Total questions attempted: 598
+------------------------

@@ -1,8 +1,29 @@
 DONE Estrazione dai quiz di tutti i dipi di leggi non fatti
-DONE Creazione di un ref dataframe con tutti i dipi di leggi non fatti
-DONE(memory exception) Riaddestramento del modello basato anche sui nuovi ref
-Tokenizzazione con lo stesso modello di tutte le leggi nuove e quelle regionali 
-Inserimento di tutte queste nuove leggi + quelle regionali all'interno di milvus IN DUE COLLEZIONI DIFFERENTI
-Implementare la sostituzioni delle leggi dei quiz con leggi regionali
 
-Prova a rifare l'addestramento tenendo freezati tutti i layer tranne il primo
+DONE Creazione di un ref dataframe con tutti i dipi di leggi non fatti
+
+DONE(memory exception) Riaddestramento del modello basato anche sui nuovi ref
+
+DONE Tokenizzazione con lo stesso modello di tutte le leggi nuove e quelle regionali 
+
+DONE Inserimento di tutte queste nuove leggi + quelle regionali all'interno di milvus IN DUE COLLEZIONI DIFFERENTI
+
+NOT DONE Implementare la sostituzioni delle leggi dei quiz con leggi regionali
+
+DONE Prova a rifare l'addestramento tenendo freezati tutti i layer tranne il primo
+-------------------------------------------------------------------------------------------
+
+DOING Chiedi a llama di generare un contesto per ogni domanda, aggiungerlo poi alla domanda e 
+ricalcolare la precisione (giacomo frisoni)
+
+DOING Ripetere tutti i test con diversi modelli per capire chi va meglio e chi va peggio (5-6 
+modelli single GPU, anche Flanti 5, legalbert, romulus)
+
+DOING Provare ad embeddare in un formato specifico ex:”sourceLegge|narticolo|testoLegge” e metti 
+dentro Milvus, stessa cosa per le domande quindi strutturare con lo stesso schema le domande 
+“sourceLegge|narticolo|testoLegge”, la si embedda e si fa una nuova similarity search, si 
+verifica poi se la capacità di fare retrieval aumenta, nel caso in cui l’embedding funzioni 
+ritestare i punti precedenti, altrimenti si prova a dividere ogni articolo di legge in due 
+embedding e il testo dell’articolo (1: riferimento normativo, anno, articolo. 2: embedding del 
+testo dell’articolo) da salvare nella stessa tupla e prova a fare retrieval solo con il primo 
+embedding

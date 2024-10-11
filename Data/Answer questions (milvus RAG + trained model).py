@@ -20,8 +20,8 @@ LAWS_CSV = DEFAULT_SAVE_DIR + ('/laws.csv' if isLinux else '\\laws.csv')
 QUIZZES_CSV = DEFAULT_SAVE_DIR + ('/quiz_merged.csv' if isLinux else '\\quiz_merged.csv')
 
 LANGUAGE_MODEL = "meta-llama/Meta-Llama-3.1-8B-Instruct"
-TRAINED_MODEL_DIR = default_path.replace("/Downloaded", "/TrainedModel") if isLinux else default_path.replace("\\Downloaded", "\\TrainedModel")
-TRAINED_TOKENIZER_DIR = default_path.replace("/Downloaded", "/TrainedTokenizer") if isLinux else default_path.replace("\\Downloaded", "\\TrainedTokenizer")
+TRAINED_MODEL_DIR = default_path.replace("/Downloaded", "/TrainedModelFrozenFirst") if isLinux else default_path.replace("\\Downloaded", "\\TrainedModel")
+TRAINED_TOKENIZER_DIR = default_path.replace("/Downloaded", "/TrainedTokenizerFrozenFirst") if isLinux else default_path.replace("\\Downloaded", "\\TrainedTokenizer")
 EMBEDDING_TOKENIZER = "BAAI/bge-m3"
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -40,26 +40,6 @@ def connect_to_milvus():
     
     # Check if Milvus is connected
     print("CONNECTION:", connections.list_connections())    
-        
-def drop_everything():
-    collections = utility.list_collections()
-
-    for collection in collections:
-        utility.drop_collection(collection)
-
-def create_collection():
-    laws_fields = [
-        FieldSchema(name="law_id", dtype=DataType.INT64, is_primary=True, auto_id=True),
-        FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=1024),
-        FieldSchema(name="law_source", dtype=DataType.VARCHAR, max_length=50),
-        FieldSchema(name="law_year", dtype=DataType.VARCHAR, max_length=50),
-        FieldSchema(name="law_number", dtype=DataType.VARCHAR, max_length=50),
-        FieldSchema(name="law_text", dtype=DataType.VARCHAR, max_length=60000)
-    ]
-    schema = CollectionSchema(laws_fields, "laws collection", enable_dynamic_field=True)
-    laws_collection = Collection(name="laws_collection", schema=schema)
-    laws_collection.create_index("embedding", {"index_type": "IVF_FLAT", "metric_type": "L2", "params": {"nlist": 128}})
-    return laws_collection
 
 def generate_embedding(text, tokenizer, model):
     encoded_input = tokenizer(text, padding=True, truncation=True, return_tensors='pt').to(DEVICE)
@@ -67,50 +47,6 @@ def generate_embedding(text, tokenizer, model):
         model_output = model(**encoded_input)
         embedding = model_output.last_hidden_state.mean(dim=1).squeeze().cpu().numpy()
     return embedding
-
-def load_data_and_generate_embeddings(data, model, tokenizer):
-    data["year"] = data["year"].astype(str)
-    # law_source,year,law_number,law_text    
-    
-    embeddings = []
-    for cc in tqdm(data["law_text"], total=data.shape[0]):
-        if type(cc) != str:
-            cc = ""
-        embeddings.append(generate_embedding(cc, tokenizer, model))
-    data["embedding"] = embeddings
-
-    return data
-
-def insert_data_into_milvus(collection, dataWithEmbeddings):
-    embedding_list = dataWithEmbeddings["embedding"].tolist()
-    source_list = dataWithEmbeddings["law_source"].tolist()
-    year_list = dataWithEmbeddings["year"].tolist()
-    number_list = dataWithEmbeddings["law_number"].tolist()
-    text_list = dataWithEmbeddings["law_text"].tolist()
-    
-    data = []
-    for i in range(len(embedding_list)):        
-        if type(source_list[i]) != str:
-            print(f"SOURCE ERROR --> Type: {type(source_list[i])} CONTENT: {source_list[i]}")
-        if type(year_list[i]) != str:
-            print(f"YEAR ERROR --> Type: {type(year_list[i])} CONTENT: {year_list[i]}")
-        if type(number_list[i]) != str:
-            print(f"NUMBER ERROR --> Type: {type(number_list[i])} CONTENT: {number_list[i]}")
-        if type(text_list[i]) != str:
-            print(f"TEXT ERROR --> Type: {type(text_list[i])} CONTENT: {text_list[i]}")
-        
-        data.append({
-            "embedding": embedding_list[i],     # Embedding (FLOAT_VECTOR)
-            "law_source": source_list[i],           # Source (VARCHAR)
-            "law_year": year_list[i],         # Article (VARCHAR)
-            "law_number": number_list[i],             # Comma (VARCHAR)
-            "law_text": text_list[i]  # Comma content (VARCHAR)
-        })
-    #print(len(data[0]["embedding"]))
-    collection.insert(data)
-    
-    collection.flush()
-    collection.load()
     
 def search_similar_text(collection, query, tokenizer, model, top_k=3):
     query_embedding = generate_embedding(query, tokenizer, model)
@@ -121,7 +57,7 @@ def search_similar_text(collection, query, tokenizer, model, top_k=3):
         anns_field="embedding", 
         param=search_params, 
         limit=top_k, 
-        output_fields=["law_source", "law_year", "law_number", "law_text"]
+        output_fields=["law_source", "law_year", "article_number", "article_text"]
     )
     
     # Format the results
@@ -131,8 +67,8 @@ def search_similar_text(collection, query, tokenizer, model, top_k=3):
             "score": result.score,
             "law_source": result.entity.get("law_source"),
             "law_year": result.entity.get("law_year"),
-            "law_number": result.entity.get("law_number"),
-            "law_text": result.entity.get("law_text")
+            "article_number": result.entity.get("article_number"),
+            "article_text": result.entity.get("article_text")
         })
     
     return formatted_results
@@ -156,8 +92,8 @@ def generate_response(prompt, model, tokenizer):
     return response
 
 connect_to_milvus()
-drop_everything() # !!! WARNING !!!
-laws_collection = create_collection()
+laws_collection = Collection(name="laws_collection")
+laws_collection.load()
 
 device = torch.device(DEVICE)
 
@@ -174,8 +110,8 @@ language_tokenizer = AutoTokenizer.from_pretrained(LANGUAGE_MODEL)
 embedding_model = AutoModel.from_pretrained(TRAINED_MODEL_DIR).to(device)
 embedding_tokenizer = AutoTokenizer.from_pretrained(TRAINED_TOKENIZER_DIR)#(LANGUAGE_MODEL)
 
-dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), embedding_model, embedding_tokenizer)
-insert_data_into_milvus(laws_collection, dataWithEmbeddings)
+#dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), embedding_model, embedding_tokenizer)
+#insert_data_into_milvus(laws_collection, dataWithEmbeddings)
 
 # quiz_id,question,answer_1,answer_2,answer_3
 quizzes_df = pd.read_csv(QUIZZES_CSV)
@@ -195,7 +131,7 @@ for idx, row in quizzes_df.iterrows():
 
     print("Searching for similar text in the laws collection...")
     search_results = search_similar_text(laws_collection, question, embedding_tokenizer, embedding_model)
-    context = "; ".join([result["law_text"] for result in search_results])
+    context = "; ".join([result["article_text"] for result in search_results])
 
     print("Generating response using LLaMA...")
     system_prompt = f"""

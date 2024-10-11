@@ -31,12 +31,16 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 TRAIN_JSON = DEFAULT_SAVE_DIR + "train.json"
 VAL_JSON = DEFAULT_SAVE_DIR + "val.json"
 #EMB_WEIGHTS = DEFAULT_SAVE_DIR + "embedding_weights_H.pt"
-TRAINED_MODEL_DIR = default_path.replace("/Downloaded", "/TrainedModel") if isLinux else default_path.replace("\\Downloaded", "\\TrainedModel")
-TRAINED_TOKENIZER_DIR = default_path.replace("/Downloaded", "/TrainedTokenizer") if isLinux else default_path.replace("\\Downloaded", "\\TrainedTokenizer")
+TRAINED_MODEL_DIR = default_path.replace("/Downloaded", "/TrainedModelFrozenFirst") if isLinux else default_path.replace("\\Downloaded", "\\TrainedModelFrozenFirst")
+TRAINED_TOKENIZER_DIR = default_path.replace("/Downloaded", "/TrainedTokenizerFrozenFirst") if isLinux else default_path.replace("\\Downloaded", "\\TrainedTokenizerFrozenFirst")
 
 # Load retrieval model
 retrieval_model = AutoModel.from_pretrained('BAAI/bge-m3').to(DEVICE)
 tokenizer = AutoTokenizer.from_pretrained('BAAI/bge-m3')
+
+for name, param in retrieval_model.named_parameters():
+    if "embeddings" not in name:
+        param.requires_grad = False
 
 MILVUS_HOST = os.getenv('MILVUS_HOST', '127.0.0.1')
 MILVUS_PORT = os.getenv('MILVUS_PORT', '19530')

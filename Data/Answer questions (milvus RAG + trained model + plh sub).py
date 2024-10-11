@@ -170,9 +170,14 @@ def generate_response(prompt, model, tokenizer):
     return response
 
 connect_to_milvus()
-drop_everything() # !!! WARNING !!!
-laws_collection = create_collection()
-regional_laws_collection = create_regional_collection()
+#drop_everything() # !!! WARNING !!!
+#laws_collection = create_collection()
+#regional_laws_collection = create_regional_collection()
+
+laws_collection = Collection(name="laws_collection")
+laws_collection.load()
+regional_laws_collection = Collection(name="regional_laws_collection")
+regional_laws_collection.load()
 
 device = torch.device(DEVICE)
 
@@ -189,8 +194,8 @@ language_tokenizer = AutoTokenizer.from_pretrained(LANGUAGE_MODEL)
 embedding_model = AutoModel.from_pretrained(TRAINED_MODEL_DIR).to(device)
 embedding_tokenizer = AutoTokenizer.from_pretrained(TRAINED_TOKENIZER_DIR)#(LANGUAGE_MODEL)
 
-dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), embedding_model, embedding_tokenizer)
-insert_data_into_milvus(laws_collection, dataWithEmbeddings)
+#dataWithEmbeddings = load_data_and_generate_embeddings(pd.read_csv(LAWS_CSV), embedding_model, embedding_tokenizer)
+#insert_data_into_milvus(laws_collection, dataWithEmbeddings)
 
 # quiz_id,question,answer_1,answer_2,answer_3
 quizzes_df = pd.read_csv(QUIZZES_CSV)

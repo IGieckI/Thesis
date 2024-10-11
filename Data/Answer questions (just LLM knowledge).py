@@ -81,7 +81,7 @@ for model_name, model_data in models.items():
 
     for index, row in df_quiz.iterrows():
         ref = df_ref[df_ref['quiz_id'] == row['quiz_id']]
-        if ref.empty or pd.isna(ref.iloc[0]['law_text']):
+        if ref.empty or pd.isna(ref.iloc[0]['article_text']):
             continue        
                
         input_text = prompt_function(
