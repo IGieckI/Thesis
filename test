@@ -17,7 +17,7 @@ DOING Chiedi a llama di generare un contesto per ogni domanda, aggiungerlo poi a
 ricalcolare la precisione (giacomo frisoni)
 
 DOING Ripetere tutti i test con diversi modelli per capire chi va meglio e chi va peggio (5-6 
-modelli single GPU, anche Flanti 5, legalbert, romulus)
+modelli single GPU, chiedi a )
 
 DOING Provare ad embeddare in un formato specifico ex:”sourceLegge|narticolo|testoLegge” e metti 
 dentro Milvus, stessa cosa per le domande quindi strutturare con lo stesso schema le domande 

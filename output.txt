@@ -1,3 +1,6 @@
+Model LLama 3.1 With Generated Context 
+answered 483 / 635 questions correctly: 76.06%
+-----------------------
 Model Saul 7B answered 3 / 3 questions correctly: 100.00%
 Questions without references: 475
 Questions without answers: 642
@@ -18,3 +21,161 @@ Questions without references: 475
 Questions without answers: 47
 Total questions attempted: 598
 ------------------------
+Model Mistral 7B Instruct answered 165 / 216 questions correctly: 76.39%
+Questions without references: 475
+Questions without answers: 429
+Total questions attempted: 216
+------------------------
+google/mt5-small
+{
+    "epoch": 4.0,
+    "eval_accuracy": 0.4090909090909091,
+    "eval_emissions": null,
+    "eval_f1": 0.2375366568914956,
+    "eval_loss": 1.9152559041976929,
+    "eval_precision": 0.16735537190082647,
+    "eval_recall": 0.4090909090909091,
+    "eval_runtime": 6.3962,
+    "eval_samples": 66,
+    "eval_samples_per_second": 10.319,
+    "eval_steps_per_second": 10.319,
+    "test_accuracy": 0.38461538461538464,
+    "test_emissions": null,
+    "test_f1": 0.2136752136752137,
+    "test_loss": 1.9167206287384033,
+    "test_precision": 0.14792899408284027,
+    "test_recall": 0.38461538461538464,
+    "test_runtime": 6.3103,
+    "test_samples": 65,
+    "test_samples_per_second": 10.301,
+    "test_steps_per_second": 10.301,
+    "train_loss": 4.782635586862345,
+    "train_runtime": 235.8922,
+    "train_samples": 524,
+    "train_samples_per_second": 8.885,
+    "train_steps_per_second": 8.885
+}
+------------------------
+{
+  "_name_or_path": "google/mt5-base",
+  "architectures": [
+    "MT5ForConditionalGeneration"
+  ],
+  "classifier_dropout": 0.0,
+  "d_ff": 2048,
+  "d_kv": 64,
+  "d_model": 768,
+  "decoder_start_token_id": 0,
+  "dense_act_fn": "gelu_new",
+  "dropout_rate": 0.1,
+  "eos_token_id": 1,
+  "feed_forward_proj": "gated-gelu",
+  "initializer_factor": 1.0,
+  "is_encoder_decoder": true,
+  "is_gated_act": true,
+  "layer_norm_epsilon": 1e-06,
+  "model_type": "mt5",
+  "num_decoder_layers": 12,
+  "num_heads": 12,
+  "num_layers": 12,
+  "output_past": true,
+  "pad_token_id": 0,
+  "relative_attention_max_distance": 128,
+  "relative_attention_num_buckets": 32,
+  "tie_word_embeddings": false,
+  "tokenizer_class": "T5Tokenizer",
+  "torch_dtype": "float32",
+  "transformers_version": "4.37.2",
+  "use_cache": true,
+  "vocab_size": 250112
+}
+-----------------------------
+facebook/mbart-large-50
+{
+    "epoch": 4.0,
+    "eval_accuracy": 0.3484848484848485,
+    "eval_emissions": null,
+    "eval_f1": 0.1801157643854273,
+    "eval_loss": 1.7667332887649536,
+    "eval_precision": 0.1214416896235078,
+    "eval_recall": 0.3484848484848485,
+    "eval_runtime": 8.9313,
+    "eval_samples": 66,
+    "eval_samples_per_second": 7.39,
+    "eval_steps_per_second": 7.39,
+    "test_accuracy": 0.3076923076923077,
+    "test_emissions": null,
+    "test_f1": 0.14479638009049775,
+    "test_loss": 1.773544192314148,
+    "test_precision": 0.09467455621301776,
+    "test_recall": 0.3076923076923077,
+    "test_runtime": 8.7588,
+    "test_samples": 65,
+    "test_samples_per_second": 7.421,
+    "test_steps_per_second": 7.421,
+    "train_loss": 1.8258050525461444,
+    "train_runtime": 449.4142,
+    "train_samples": 524,
+    "train_samples_per_second": 4.664,
+    "train_steps_per_second": 4.664
+}
+--------------------------
+gsarti/it5-base
+{
+    "epoch": 4.0,
+    "eval_accuracy": 0.4090909090909091,
+    "eval_emissions": null,
+    "eval_f1": 0.2375366568914956,
+    "eval_loss": 1.60135018825531,
+    "eval_precision": 0.16735537190082647,
+    "eval_recall": 0.4090909090909091,
+    "eval_runtime": 10.5995,
+    "eval_samples": 66,
+    "eval_samples_per_second": 6.227,
+    "eval_steps_per_second": 6.227,
+    "test_accuracy": 0.38461538461538464,
+    "test_emissions": null,
+    "test_f1": 0.2136752136752137,
+    "test_loss": 1.6056402921676636,
+    "test_precision": 0.14792899408284027,
+    "test_recall": 0.38461538461538464,
+    "test_runtime": 10.4223,
+    "test_samples": 65,
+    "test_samples_per_second": 6.237,
+    "test_steps_per_second": 6.237,
+    "train_loss": 1.81883572440111,
+    "train_runtime": 359.3159,
+    "train_samples": 524,
+    "train_samples_per_second": 5.833,
+    "train_steps_per_second": 5.833
+}
+------------------------------------
+gsarti/it5-large
+{
+    "epoch": 4.0,
+    "eval_accuracy": 0.4090909090909091,
+    "eval_emissions": null,
+    "eval_f1": 0.2375366568914956,
+    "eval_loss": 1.5460549592971802,
+    "eval_precision": 0.16735537190082647,
+    "eval_recall": 0.4090909090909091,
+    "eval_runtime": 24.4568,
+    "eval_samples": 66,
+    "eval_samples_per_second": 2.699,
+    "eval_steps_per_second": 2.699,
+    "test_accuracy": 0.38461538461538464,
+    "test_emissions": null,
+    "test_f1": 0.2136752136752137,
+    "test_loss": 1.5486782789230347,
+    "test_precision": 0.14792899408284027,
+    "test_recall": 0.38461538461538464,
+    "test_runtime": 23.9823,
+    "test_samples": 65,
+    "test_samples_per_second": 2.71,
+    "test_steps_per_second": 2.71,
+    "train_loss": 1.6406383296005598,
+    "train_runtime": 1010.7589,
+    "train_samples": 524,
+    "train_samples_per_second": 2.074,
+    "train_steps_per_second": 2.074
+}

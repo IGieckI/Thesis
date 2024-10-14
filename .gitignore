@@ -1,3 +1,8 @@
-Data/Lib/
 Documents/TrainedModel/
 Documents/TrainedTokenizer/
+Documents/TrainedTokenizerFrozenFirst
+Documents/TrainedModelFrozenFirst
+Data/Lib/
+Data/__pycache__/
+output_explain/
+wandb/

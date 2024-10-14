@@ -1,0 +1,32 @@
+PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python CUDA_VISIBLE_DEVICES=2 python3 ./Data/TextGeneration.py \
+--logging disabled \
+--run_name gsarti/it5-large \
+--lsg false \
+--do_train \
+--do_predict \
+--do_val \
+--output_dir output_explain \
+--dataset_subset fine_tuning \
+--dataset_name IGieckI/fine_tuning_dataset \
+--model_name_or_path gsarti/it5-large \
+--log_level error \
+--gradient_accumulation_steps 1 \
+--max_target_length 512 \
+--max_source_length 6000 \
+--num_train_epochs 4 \
+--learning_rate 5e-5 \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--load_best_model_at_end \
+--predict_with_generate \
+--overwrite_cache \
+--metric_for_best_model accuracy \
+--save_total_limit 1 \
+--group_by_length \
+--sortish_sampler \
+--weight_decay 0.01 \
+--label_smoothing_factor 0.1 \
+--include_inputs_for_metrics \
+--remove_unused_columns \
+--per_device_train_batch_size 1 \
+--per_device_eval_batch_size 1 

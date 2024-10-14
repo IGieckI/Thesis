@@ -7,8 +7,6 @@ import pandas as pd
 from tqdm import tqdm
 import lxml.etree as ET
 
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
@@ -22,7 +20,9 @@ default_windows_path = os.getcwd().replace("\\Data", "\\Documents\\Downloaded") 
 default_path = default_linux_path if isLinux else default_windows_path
 
 DEFAULT_SAVE_DIR = default_path.replace("/Downloaded", "/Generated") if isLinux else default_path.replace("\\Downloaded", "\\Generated")
-CHROME_DRIVERS_PATH = "/home/giacomo.antonelli/work/chromedriver-linux64/chromedriver" if isLinux else "C:\\Users\\giaco\\Downloads\\chromedriver-win64\\chromedriver.exe"
+CHROME_DRIVERS_PATH = "/antonelli2/chromedriver-linux64/chromedriver"
+# Unibo docker:/antonelli2/chromedriver-linux64/chromedriver
+# Unibo: /home/antonelli2/chromedriver-linux64/chromedriver
 # WSL: /home/giacomo/chromedriver-linux64/chromedriver
 # Maggioli: /home/giacomo.antonelli/work/chromedriver-linux64/chromedriver
 ALL_LAWS_CSV = DEFAULT_SAVE_DIR + ("/All laws extracted.csv" if isLinux else "\\All laws extracted.csv")
@@ -203,7 +203,8 @@ else:
 scraper = NormattivaAllLawsScraper(CHROME_DRIVERS_PATH, headless=True)
 
 #1861, 2025
-for year in range(1861, 2025):
+# [1971, 1981, 1988, 1990, 1997, 1999, 2001, 2003, 2005, 2008, 2009, 2012, 2019]
+for year in [1971, 1981, 1988, 1990, 1997, 1999, 2001, 2003, 2005, 2008, 2009, 2012, 2019]:
     scraper.driver.get("https://www.normattiva.it/ricerca/avanzata")
     scraper.fill_field("annoProvvedimento", year)
     scraper.driver.find_element(By.CSS_SELECTOR, "[type*='submit']").click()

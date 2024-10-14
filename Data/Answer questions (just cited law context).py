@@ -2,7 +2,7 @@ import os
 import re
 import torch
 import pandas as pd
-from transformers import AutoTokenizer, pipeline, LlamaForCausalLM, BitsAndBytesConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration, AutoModel
+from transformers import AutoTokenizer, pipeline, LlamaForCausalLM, BitsAndBytesConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, T5Tokenizer, T5ForConditionalGeneration, AutoModel, MT5ForConditionalGeneration
 import difflib
 
 # Determine default paths based on OS
@@ -23,13 +23,6 @@ google/mt5-base
 facebook/mbart-large-50
 gsarti/it5-large
 gsarti/it5-base
- 
-Lista modelli grandi:
-mistralai/Mistral-7B-Instruct-v0.1
-meta-llama/Llama-3.1-8B-Instruct
-Equall/Saul-7B-Instruct-v1
-microsoft/Phi-3-small-8k-instruct
-google/gemma-2-9b-it
 """
 
 models = {
@@ -52,8 +45,8 @@ models = {
     #    'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),
     #    'text_generation': lambda model, tokenizer, text: [output[0]['generated_text'].strip() for output in pipeline("text-generation", model=model, tokenizer=tokenizer)(text, max_new_tokens=64)]
     #},
-    #"Mistral 7B": {
-    #    'model_name': 'mistralai/Mistral-7B-v0.1',
+    #"Mistral 7B Instruct": {
+    #    'model_name': 'mistralai/Mistral-7B-Instruct-v0.1',
     #    'context_window': 8192,
     #    'prompt_function': lambda system_prompt, user_prompt: f"{system_prompt}\nUser: {user_prompt}\nAssistant: ",
     #    'model_load_function': lambda model_name, quant_bab=None: AutoModelForCausalLM.from_pretrained(model_name, quantization_config=bnb_config, device_map="cuda") if quant_bab else AutoModelForCausalLM.from_pretrained(model_name, device_map="cuda"),
@@ -82,16 +75,16 @@ models = {
         'model_name': 'google/mt5-base', # No prompt
         'context_window': 1024,
         'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
-        'model_load_function': lambda model_name, quant_bab=None: AutoModel.from_pretrained(model_name, device_map="cuda"),#T5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),
-        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),#T5Tokenizer.from_pretrained(model_name),
-        'text_generation': lambda model, tokenizer, text: generate_text_googlemt_model(model, tokenizer, text)
+        'model_load_function': lambda model_name, quant_bab=None: MT5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),#T5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),
+        'tokenizer_load_function': lambda model_name: AutoModelForSeq2SeqLM.from_pretrained(model_name, cache_dir="../llms"),#T5Tokenizer.from_pretrained(model_name),
+        'text_generation': lambda model, tokenizer, text: generate_text_default_transformers(model, tokenizer, text)
     },
     "Google mt5-large": {
         'model_name': 'google/mt5-large', # No prompt
         'context_window': 1024,
         'prompt_function': lambda system_prompt, user_prompt: f"\n{system_prompt}\n|<user>|\n{user_prompt}\n|<assistant>|\n\n",
         'model_load_function': lambda model_name, quant_bab=None: AutoModel.from_pretrained(model_name, device_map="cuda"),#T5ForConditionalGeneration.from_pretrained(model_name, device_map="cuda"),
-        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name),#T5Tokenizer.from_pretrained(model_name),
+        'tokenizer_load_function': lambda model_name: AutoTokenizer.from_pretrained(model_name, cache_dir="../llms"),#T5Tokenizer.from_pretrained(model_name),
         'text_generation': lambda model, tokenizer, text: generate_text_googlemt_model(model, tokenizer, text)
     },
     "it5-large": {
@@ -153,7 +146,7 @@ def generate_text_googlemt_model(model, tokenizer, text):
         
         with torch.no_grad():
             output = model(input_ids=input_ids, decoder_input_ids=decoder_input_ids)
-        
+        print(dir(output))
         reply = extract_reply(output)
 
         outputs.append(reply)
